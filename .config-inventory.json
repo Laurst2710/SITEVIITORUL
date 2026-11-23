@@ -1,0 +1,10 @@
+{
+    "versiune":  "v11",
+    "data_ora":  "2026-11-23 14:41:11",
+    "pagina":  "src/pages/index.astro",
+    "pagini_inventar":  "index.astro, pbinfo-1360-suma-gauss.astro, pbinfo-387-suma-divizorilor-impari.astro, test-sunet.astro",
+    "functionalitate":  "Backup local, backup Drive/ZIP, inventar DB si initializare/legare Git",
+    "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-144111",
+    "backup_gdrive":  "Arhiva ZIP creata pe Desktop: C:\\Users\\Laurentiu\\Desktop\\Backup-Viitorul-v11-20261123-144111.zip",
+    "preview_local":  "http://localhost:4321/"
+}

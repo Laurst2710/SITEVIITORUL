@@ -1,0 +1,769 @@
+---
+// Pagină separată: Pbinfo #1360 - Suma Gauss
+// Versiune pagină: v2.0.4
+---
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- START SEO: Meta-etichete pentru indexare, cautare si partajare -->
+  <!-- SEO: Titlul principal pentru cautare si snippet -->
+  <title>Pbinfo #1360 — Suma Gauss | v2.0.4</title>
+  <!-- SEO: Descrierea problemei si a metodei de rezolvare -->
+  <meta name="description" content="Rezolvare completă pentru Pbinfo #1360 — Suma Gauss (Sume, produse, numărări, Structura decizie, Structura repetitiva) în C++, Pseudocod, Flowgorithm și Python." />
+  <meta name="robots" content="index, follow" />
+  <!-- SEO: Cale canonica relativa (fara domeniu hardcodat) -->
+  <link rel="canonical" href="/pbinfo-1360-suma-gauss" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Pbinfo #1360 — Suma Gauss | v2.0.4" />
+  <meta property="og:description" content="Rezolvare completă pentru Pbinfo #1360 — Suma Gauss în C++, Pseudocod, Flowgorithm și Python." />
+  <!-- END SEO -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@v2.0.3/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@v2.0.3/dist/skulpt-stdlib.js"></script>
+  <style>
+    :root {
+      --bg-card: #ffffff;
+      --bg-soft: #efe9ff;
+      --border: #ddd2fe;
+      --text-main: #1e1b4b;
+      --accent: #6d28d9;
+      --accent-hover: #5b21b6;
+      --code-bg: #161329;
+      --code-text: #f3e8ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(160deg, #ede9fe 0%, #f8f7ff 45%, #ffffff 100%);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .ver-badge {
+      position: fixed;
+      top: 12px;
+      right: 14px;
+      z-index: 99999;
+      background: #1e1b4b;
+      color: #f3e8ff;
+      border: 1px solid #8b5cf6;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(30, 27, 75, 0.22);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .header-card, section.card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      box-shadow: 0 10px 26px rgba(109, 40, 217, 0.06);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.85rem;
+      border-radius: 12px;
+      background: #ede9fe;
+      color: #4c1d95;
+      border: 1px solid #c4b5fd;
+      font-weight: 600;
+      font-size: 0.88rem;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    .badge-row .badge:first-child {
+      background: #6d28d9;
+      color: #ffffff;
+      border-color: #6d28d9;
+    }
+
+    h1 { margin: 0 0 0.75rem 0; font-size: 1.85rem; color: #2e1065; }
+    section.card h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      color: #3b0764;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step-pill {
+      background: #ede9fe;
+      color: #6d28d9;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+
+    .enunt-box {
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      font-size: 1.05rem;
+    }
+
+    .enunt-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+    }
+
+    .enunt-meta div {
+      background: #ffffff;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    pre.code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.25rem;
+      border-radius: 14px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin: 0.75rem 0;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.55rem 1.1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: var(--accent-hover); }
+    .btn-secondary {
+      background: #ede9fe;
+      color: #4c1d95;
+      border: 1px solid #c4b5fd;
+    }
+    .btn-secondary:hover { background: #ddd6fe; }
+
+    .btn:disabled,
+    .btn-secondary:disabled {
+      background: #e5e7eb;
+      color: #6b7280;
+      border-color: #d1d5db;
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
+
+    .stdin-live-box {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+      background: #f5f3ff;
+      border: 1px solid #8b5cf6;
+      border-radius: 12px;
+      padding: 0.55rem 0.85rem;
+    }
+
+    .stdin-live-box.active {
+      display: flex;
+    }
+
+    .stdin-live-box input {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.4rem 0.65rem;
+      border: 1px solid #7c3aed;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      background: #ffffff;
+      color: #1e1b4b;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .pseudocod-box {
+      background: #faf8ff;
+      border: 1px solid #d8b4fe;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #1e1b4b;
+    }
+
+    .kw { color: #6d28d9; font-weight: 700; }
+    .indent-1 { padding-left: 1.5rem; }
+    .indent-2 { padding-left: 3rem; }
+
+    .flow-wrap {
+      background: #faf8ff;
+      border: 1px solid #d8b4fe;
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+    }
+
+    .python-challenge {
+      background: #f5f3ff;
+      border: 1px solid #c4b5fd;
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .editor-host {
+      position: relative;
+      z-index: 2;
+    }
+
+    textarea#pyEditor {
+      width: 100%;
+      min-height: 220px;
+      background: #161329;
+      color: #f3e8ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      padding: 1rem;
+      border-radius: 14px;
+      border: 2px solid #7c3aed;
+      resize: vertical;
+      outline: none;
+      display: block;
+    }
+
+    .runner-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 0.85rem 0;
+    }
+
+    .stdin-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f5f3ff;
+      border: 1px solid #c4b5fd;
+      padding: 0.4rem 0.75rem;
+      border-radius: 10px;
+    }
+
+    .stdin-group input {
+      width: 120px;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid #a78bfa;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      background: #ffffff;
+      color: #1e1b4b;
+    }
+
+    pre#pyOutput {
+      background: #0f0d1d;
+      color: #a7f3d0;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      min-height: 76px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+  
+    /* Petic v2.0.4: enunt propriu, stil violet, cifre mari si bold */
+    .enunt-sectiuni { display: grid; gap: 0.85rem; }
+    .enunt-sec { background: var(--bg-soft); border-left: 4px solid var(--accent); border-radius: 12px; padding: 0.8rem 1.25rem; }
+    .enunt-sec h2 { margin: 0 0 0.3rem; font-size: 1.1rem; color: #3b0764; }
+    .enunt-sec p { margin: 0.3rem 0 0; }
+    .enunt-sec code, .enunt-io code { font-size: 1.2rem; font-weight: 800; color: #3b0764; }
+    .enunt-io { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin: 0.4rem 0; }
+    .enunt-io div { background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.9rem; }
+    .enunt-io strong { display: block; font-size: 0.85rem; margin-bottom: 0.15rem; }
+  </style>
+</head>
+<body>
+  <div class="ver-badge" id="pageVersionBadge">v2.0.4</div>
+
+  <main class="container">
+    <header class="header-card">
+      <div class="badge-row">
+        <span class="badge">Referință - Pbinfo #1360</span>
+        <span class="badge">C++ → Pseudocod → Flowgorithm → Python</span>
+        <span class="badge">Sume, produse, numărări</span>
+        <span class="badge">Structura decizie</span>
+        <span class="badge">Structura repetitiva</span>
+      </div>
+      <h1>Suma Gauss</h1>
+      <div class="enunt-sectiuni">
+        <div class="enunt-sec">
+          <h2>Cerința</h2>
+          <p>Se dă un număr natural <code>n</code>. Află cât face adunarea tuturor numerelor naturale de la <code>1</code> până la <code>n</code>.</p>
+        </div>
+
+        <div class="enunt-sec">
+          <h2>Intrare</h2>
+          <p>Pe o singură linie se află numărul <code>n</code>.</p>
+        </div>
+
+        <div class="enunt-sec">
+          <h2>Ieșire</h2>
+          <p>Se afișează un singur număr: suma <code>1</code> + <code>2</code> + ... + <code>n</code>.</p>
+        </div>
+
+        <div class="enunt-sec">
+          <h2>Restricții</h2>
+          <p><code>n</code> este un număr natural.</p>
+        </div>
+
+        <div class="enunt-sec">
+          <h2>Exemplu</h2>
+          <div class="enunt-io">
+            <div><strong>Intrare</strong><code>5</code></div>
+            <div><strong>Ieșire</strong><code>15</code></div>
+          </div>
+          <p>Pentru <code>n = 5</code> se adună <code>1</code> + <code>2</code> + <code>3</code> + <code>4</code> + <code>5</code> = <code>15</code>.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="code-header">
+        <h2><span class="step-pill">Pasul 1</span> Rezolvarea în C++</h2>
+        <button type="button" class="btn btn-secondary" id="copyCppBtn">Copiază codul C++</button>
+      </div>
+      <p>
+        Suma primelor <code>n</code> numere naturale nenule se determină direct prin formula lui Gauss <code>suma = n * (n + 1) / 2</code> (în timp constant O(1)), folosind <code>long long</code> pentru a evita depășirea limitelor la valori mari ale lui <code>n</code>.
+      </p>
+      <pre class="code-block" id="cppCode">{`#include <iostream>
+using namespace std;
+
+int main() {
+    long long numarCitit; // Aici pastram numarul natural n citit de la tastatura
+
+    cin >> numarCitit; // Citim valoarea lui n (de exemplu, 5)
+
+    // Formula lui Gauss calculeaza direct suma 1 + 2 + ... + n = n * (n + 1) / 2
+    long long sumaGauss = numarCitit * (numarCitit + 1) / 2;
+
+    cout << sumaGauss; // Afisam rezultatul final (pentru 5 se afiseaza 15)
+    return 0;
+}`}</pre>
+    </section>
+
+    <section class="card">
+      <h2><span class="step-pill">Pasul 2</span> Pseudocod (conform uzanțelor) &amp; Schemă Logică Flowgorithm</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Pseudocod (conform uzanțelor)</h3>
+          <div class="pseudocod-box">
+            <div><span class="kw">citește</span> numarCitit</div>
+            <div>sumaGauss &larr; 0</div>
+            <div>termenCurent &larr; 1</div>
+            <div><span class="kw">cât timp</span> termenCurent &le; numarCitit <span class="kw">execută</span></div>
+            <div class="indent-1">sumaGauss &larr; sumaGauss + termenCurent</div>
+            <div class="indent-1">termenCurent &larr; termenCurent + 1</div>
+            <div><span class="kw">sfârșit cât timp</span></div>
+            <div><span class="kw">scrie</span> sumaGauss</div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Schemă logică Flowgorithm</h3>
+          <div class="flow-wrap">
+            <svg width="390" height="520" viewBox="0 0 390 520" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" font-size="11.5">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#4c1d95" />
+                </marker>
+              </defs>
+
+              <rect x="135" y="10" width="120" height="34" rx="17" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2" />
+              <text x="195" y="31" text-anchor="middle" font-weight="700" fill="#2e1065">Start</text>
+              <line x1="195" y1="44" x2="195" y2="68" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <polygon points="115,68 295,68 275,104 95,104" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8" />
+              <text x="195" y="90" text-anchor="middle" font-weight="600" fill="#0c4a6e">Intrare numarCitit</text>
+              <line x1="195" y1="104" x2="195" y2="128" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <rect x="85" y="128" width="220" height="44" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.8" />
+              <text x="195" y="146" text-anchor="middle" fill="#713f12">sumaGauss = 0</text>
+              <text x="195" y="163" text-anchor="middle" fill="#713f12">termenCurent = 1</text>
+              <line x1="195" y1="172" x2="195" y2="198" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <polygon points="195,198 310,238 195,278 80,238" fill="#ffedd5" stroke="#ea580c" stroke-width="1.8" />
+              <text x="195" y="236" text-anchor="middle" font-weight="600" fill="#7c2d12">termenCurent &le;</text>
+              <text x="195" y="250" text-anchor="middle" font-weight="600" fill="#7c2d12">numarCitit ?</text>
+
+              <line x1="310" y1="238" x2="362" y2="238" stroke="#4c1d95" stroke-width="1.6" />
+              <text x="333" y="230" font-size="10.5" font-weight="700" fill="#b91c1c">Fals</text>
+              <line x1="362" y1="238" x2="362" y2="412" stroke="#4c1d95" stroke-width="1.6" />
+              <line x1="362" y1="412" x2="292" y2="412" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <line x1="195" y1="278" x2="195" y2="306" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+              <text x="216" y="295" font-size="10.5" font-weight="700" fill="#15803d">Adevărat</text>
+
+              <rect x="65" y="306" width="260" height="46" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.8" />
+              <text x="195" y="325" text-anchor="middle" fill="#713f12">sumaGauss = sumaGauss + termenCurent</text>
+              <text x="195" y="342" text-anchor="middle" fill="#713f12">termenCurent = termenCurent + 1</text>
+
+              <line x1="65" y1="329" x2="24" y2="329" stroke="#4c1d95" stroke-width="1.6" />
+              <line x1="24" y1="329" x2="24" y2="186" stroke="#4c1d95" stroke-width="1.6" />
+              <line x1="24" y1="186" x2="195" y2="186" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <polygon points="105,394 295,394 275,430 85,430" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8" />
+              <text x="190" y="416" text-anchor="middle" font-weight="600" fill="#14532d">Ieșire sumaGauss</text>
+              <line x1="190" y1="430" x2="190" y2="458" stroke="#4c1d95" stroke-width="1.6" marker-end="url(#arrow)" />
+
+              <rect x="130" y="458" width="120" height="34" rx="17" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2" />
+              <text x="190" y="479" text-anchor="middle" font-weight="700" fill="#2e1065">Sfârșit</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="step-pill">Pasul 3</span> Rezolvarea în Python</h2>
+      <div class="python-challenge">
+        <strong>Cerință:</strong> Se citește <code>n</code> număr natural. Calculați suma numerelor naturale mai mici sau egale cu <code>n</code>. Scrie rezolvarea în Python în fereastra de mai jos și ruleaz-o.
+      </div>
+
+      <div class="editor-host">
+        <textarea id="pyEditor" placeholder="# Scrie aici codul tău Python..." spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+      </div>
+
+      <div class="runner-controls">
+        <div class="stdin-group">
+          <label for="pyStdin"><strong>Intrare (n):</strong></label>
+
+          <input type="text" id="pyStdin" value="5" />
+        </div>
+<div class="iesire-asteptata-aligned" style="display:inline-flex;align-items:center;gap:6px;align-self:center;font-size:0.95rem;white-space:nowrap;"><strong>Ieșire așteptată:</strong> <code style="padding:2px 7px;border-radius:6px;background:rgba(124,58,237,0.12);font-weight:700;">15</code></div>
+
+        <button type="button" class="btn" id="runPyBtn">&#9654; Rulează Python</button>
+        <button type="button" class="btn btn-secondary" id="clearPyBtn">Golește editorul</button>
+        <button type="button" class="btn btn-secondary" id="copyPyBtn">Copiază codul</button>
+        <button type="button" class="btn btn-secondary" id="recSolutionBtn" disabled>Rezolvare recomandată (30s)</button>
+      </div>
+
+      <pre id="pyOutput"></pre>
+
+      <div class="stdin-live-box" id="stdinLiveBox">
+        <label for="stdinLiveInput"><strong id="stdinLiveLabel">Introdu de la tastatură:</strong></label>
+        <input type="text" id="stdinLiveInput" autocomplete="off" />
+        <button type="button" class="btn" id="stdinLiveSubmit">Trimite</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Referinta catre zona in care elevul scrie codul Python
+    const pyEditor = document.getElementById('pyEditor');
+    // Referinta catre campul de intrare din bara de rulare
+    const pyStdin = document.getElementById('pyStdin');
+    // Referinta catre consola unde se afiseaza rezultatul
+    const pyOutput = document.getElementById('pyOutput');
+    // Referinta catre butonul "Rezolvare recomandata"
+    const recBtn = document.getElementById('recSolutionBtn');
+    // Referinta catre butonul "Copiaza codul"
+    const copyPyBtn = document.getElementById('copyPyBtn');
+    // Referinta catre containerul de intrare live de la tastatura
+    const stdinLiveBox = document.getElementById('stdinLiveBox');
+    // Referinta catre eticheta din caseta de intrare live
+    const stdinLiveLabel = document.getElementById('stdinLiveLabel');
+    // Referinta catre inputul in care se scrie valoarea
+    const stdinLiveInput = document.getElementById('stdinLiveInput');
+    // Referinta catre butonul "Trimite" din caseta de intrare live
+    const stdinLiveSubmit = document.getElementById('stdinLiveSubmit');
+
+    // Rezolvarea recomandata: citeste n prin input() fara sa hardcodeze nicio valoare
+    const recommendedSolution = [
+      '# Citim numarul n de la tastatura',
+      'numarCitit = int(input())',
+      '',
+      '# Calculam suma 1 + 2 + ... + n prin formula lui Gauss',
+      'sumaGauss = numarCitit * (numarCitit + 1) // 2',
+      '',
+      '# Afisam rezultatul',
+      'print(sumaGauss)'
+    ].join('\n');
+
+    // Editorul porneste gol si editabil, fara solutie incarcata din start
+    if (pyEditor) {
+      pyEditor.value = '';
+      pyEditor.readOnly = false;
+      pyEditor.disabled = false;
+      pyEditor.removeAttribute('readonly');
+      pyEditor.removeAttribute('disabled');
+    }
+
+    // Campul de intrare ramane editabil de la tastatura
+    if (pyStdin) {
+      pyStdin.readOnly = false;
+      pyStdin.disabled = false;
+      pyStdin.removeAttribute('readonly');
+      pyStdin.removeAttribute('disabled');
+    }
+
+    // Durata de asteptare (30s) pana la deblocarea butonului "Rezolvare recomandata"
+    const unlockDelaySeconds = 30;
+    // Numarul de secunde ramase in cronometru
+    let remainingSeconds = unlockDelaySeconds;
+
+    if (recBtn) {
+      // Butonul incepe dezactivat (greyed)
+      recBtn.disabled = true;
+      // Afisam numarul initial de secunde pe buton
+      recBtn.textContent = `Rezolvare recomandată (${remainingSeconds}s)`;
+
+      // Actualizam cronometrul la fiecare secunda
+      const timerId = setInterval(() => {
+        remainingSeconds -= 1;
+        if (remainingSeconds > 0) {
+          recBtn.textContent = `Rezolvare recomandată (${remainingSeconds}s)`;
+        } else {
+          clearInterval(timerId);
+          recBtn.disabled = false;
+          recBtn.textContent = 'Rezolvare recomandată';
+        }
+      }, 1000);
+
+      // Incarcam rezolvarea recomandata doar cand butonul este deblocat si apasat
+      recBtn.addEventListener('click', () => {
+        if (recBtn.disabled || !pyEditor) return;
+        pyEditor.value = recommendedSolution;
+        pyEditor.focus();
+        pyOutput.style.color = '#a7f3d0';
+        pyOutput.textContent = 'Rezolvare recomandată încărcată în editor (intrarea se ia de la tastatură, fără valoare hardcodată).';
+      });
+    }
+
+    // Copierea codului C++ in clipboard
+    document.getElementById('copyCppBtn')?.addEventListener('click', function () {
+      const code = document.getElementById('cppCode')?.innerText || '';
+      navigator.clipboard?.writeText(code).then(() => {
+        this.textContent = 'Copiat!';
+        setTimeout(() => { this.textContent = 'Copiază codul C++'; }, 1500);
+      });
+    });
+
+    // Copierea codului Python din editor in clipboard
+    copyPyBtn?.addEventListener('click', function () {
+      const code = pyEditor ? pyEditor.value : '';
+      if (!code) return;
+      navigator.clipboard?.writeText(code).then(() => {
+        const prev = this.textContent;
+        this.textContent = 'Copiat!';
+        setTimeout(() => { this.textContent = prev; }, 1500);
+      });
+    });
+
+    // Golirea editorului Python si a consolei la cerere
+    document.getElementById('clearPyBtn')?.addEventListener('click', () => {
+      pyEditor.value = '';
+      pyOutput.style.color = '#a7f3d0';
+      pyOutput.textContent = '';
+      pyEditor.focus();
+    });
+
+    // Preluarea unei valori de la tastatura atunci cand programul Python apeleaza input()
+    function requestKeyboardInput(promptText) {
+      return new Promise((resolve) => {
+        if (!stdinLiveBox || !stdinLiveInput || !stdinLiveSubmit) {
+          resolve(pyStdin ? pyStdin.value : '');
+          return;
+        }
+
+        if (stdinLiveLabel) {
+          stdinLiveLabel.textContent = promptText && promptText.trim()
+            ? promptText.trim() + ' '
+            : 'Introdu valoarea de la tastatură:';
+        }
+
+        stdinLiveInput.value = '';
+        stdinLiveBox.classList.add('active');
+        stdinLiveInput.focus();
+
+        const cleanup = () => {
+          stdinLiveBox.classList.remove('active');
+          stdinLiveSubmit.removeEventListener('click', onSubmit);
+          stdinLiveInput.removeEventListener('keydown', onKeyDown);
+        };
+
+        const onSubmit = () => {
+          const val = stdinLiveInput.value;
+          if (pyStdin) pyStdin.value = val;
+          cleanup();
+          resolve(val);
+        };
+
+        const onKeyDown = (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            onSubmit();
+          }
+        };
+
+        stdinLiveSubmit.addEventListener('click', onSubmit);
+        stdinLiveInput.addEventListener('keydown', onKeyDown);
+      });
+    }
+
+        // Incarca dinamic Skulpt (cu fallback unpkg daca jsdelivr nu raspunde)
+    function loadSkulptIfNeeded(timeoutMs = 3500) {
+      return new Promise((resolve) => {
+        if (typeof Sk !== 'undefined') {
+          resolve(true);
+          return;
+        }
+
+        const sources = [
+          [
+            'https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js',
+            'https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js'
+          ],
+          [
+            'https://unpkg.com/skulpt@1.2.0/dist/skulpt.min.js',
+            'https://unpkg.com/skulpt@1.2.0/dist/skulpt-stdlib.js'
+          ]
+        ];
+
+        const tryPair = (idx) => {
+          if (idx >= sources.length) {
+            resolve(typeof Sk !== 'undefined');
+            return;
+          }
+
+          const [coreUrl, stdlibUrl] = sources[idx];
+          const s1 = document.createElement('script');
+          s1.src = coreUrl;
+          s1.async = true;
+
+          s1.onload = () => {
+            const s2 = document.createElement('script');
+            s2.src = stdlibUrl;
+            s2.async = true;
+            s2.onload = () => resolve(typeof Sk !== 'undefined');
+            s2.onerror = () => tryPair(idx + 1);
+            document.head.appendChild(s2);
+          };
+
+          s1.onerror = () => tryPair(idx + 1);
+          document.head.appendChild(s1);
+        };
+
+        const timer = setTimeout(() => {
+          resolve(typeof Sk !== 'undefined');
+        }, timeoutMs);
+
+        tryPair(0);
+        Promise.resolve().then(() => {});
+      });
+    }
+
+    // Rularea codului Python prin motorul Skulpt
+    document.getElementById('runPyBtn')?.addEventListener('click', async () => {
+      const code = pyEditor.value;
+
+      pyOutput.style.color = '#a7f3d0';
+      pyOutput.textContent = '';
+
+      if (!code.trim()) {
+        pyOutput.style.color = '#fca5a5';
+        pyOutput.textContent = 'Scrie codul Python în fereastră înainte de a rula.';
+        return;
+      }
+
+      const skReady = await loadSkulptIfNeeded();
+      if (!skReady || typeof Sk === 'undefined') {
+        pyOutput.style.color = '#fca5a5';
+        pyOutput.textContent = 'Eroare: motorul Python nu s-a încărcat (verifică conexiunea la internet sau extensiile de blocare scripturi).';
+        return;
+      }
+
+      Sk.configure({
+        output: (text) => { pyOutput.textContent += text; },
+        read: (x) => {
+          if (Sk.builtinFiles === undefined || Sk.builtinFiles.files[x] === undefined) {
+            throw "File not found: '" + x + "'";
+          }
+          return Sk.builtinFiles.files[x];
+        },
+        inputfun: (promptText) => requestKeyboardInput(promptText),
+        inputfunTakesPrompt: true,
+        execLimit: null
+      });
+
+      Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, code, true)).then(
+        () => {},
+        (err) => {
+          if (stdinLiveBox) stdinLiveBox.classList.remove('active');
+          pyOutput.style.color = '#fca5a5';
+          pyOutput.textContent = err.toString();
+        }
+      );
+    });
+  </script>
+</body>
+</html>

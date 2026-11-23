@@ -1,0 +1,410 @@
+﻿---
+const pageTitle = "Test Audio & Cursor v1.3.1 — Sincronizat 1:1 + Clinchet Zaruri | Viitorul Digital";
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Cercul cu bila pe interior - ascuns pana intra cursorul pe ecran -->
+    <div id="orbit-ring" aria-hidden="true">
+      <div id="marble-dot"></div>
+    </div>
+
+    <main class="stage">
+      <span class="badge">Modul Cursor & Audio v1.3.1</span>
+      <h1>Sincronizat 1:1 cu cursorul + Clinchet fin ca la zaruri</h1>
+      <p>
+        De cum intră cursorul pe ecran, cercul se fixează instant pe el. Bila se mișcă <strong>strict odată cu cursorul tău</strong> (nu se mai învârte singură), iar sunetul este un clinchet fin de zaruri (plus <em>swoosh</em> la click).
+      </p>
+
+      <div class="controls">
+        <button id="toggleSoundBtn" class="btn-primary" type="button">
+          🔊 Activează sunetul (Zaruri + Swoosh)
+        </button>
+        <button id="testSwooshBtn" class="btn-secondary" type="button">
+          💨 Testează Swoosh
+        </button>
+      </div>
+
+      <div class="meter-box">
+        <div>Poziție Stereo: <strong id="panVal">Centru (0.00)</strong></div>
+        <div>Mișcare cursor: <strong id="speedVal">Oprit</strong></div>
+      </div>
+
+      <a href="/" class="back-link">← Înapoi la pagina principală</a>
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById('toggleSoundBtn');
+      const swooshBtn = document.getElementById('testSwooshBtn');
+      const orbitRing = document.getElementById('orbit-ring');
+      const marbleDot = document.getElementById('marble-dot');
+      const panVal = document.getElementById('panVal');
+      const speedVal = document.getElementById('speedVal');
+
+      let audioCtx: AudioContext | null = null;
+      let noiseBuffer: AudioBuffer | null = null;
+      let isEnabled = false;
+
+      let isCursorInside = false;
+      let lastX: number | null = null;
+      let lastY: number | null = null;
+      let currentPan = 0;
+      let marbleAngle = -Math.PI / 4; // pozitie initiala sus-dreapta pe interior
+      let distanceAccumulator = 0;
+      let idleTimer: number | null = null;
+
+      function setupAudio() {
+        if (audioCtx) return;
+        const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        audioCtx = new AC();
+
+        const length = audioCtx.sampleRate * 2;
+        noiseBuffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < length; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+      }
+
+      // Clinchet fin ca la zaruri (doar cand cursorul se misca)
+      function playDiceTick(intensity: number) {
+        if (!isEnabled || !audioCtx) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const panner = audioCtx.createStereoPanner();
+        panner.pan.setValueAtTime(currentPan, now);
+
+        const jitter = 0.9 + Math.random() * 0.24;
+        const baseFreq = (1600 + intensity * 550) * jitter;
+
+        const osc = audioCtx.createOscillator();
+        const oscGain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(baseFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.45, now + 0.016);
+
+        const vol = Math.min(0.022 + intensity * 0.048, 0.075);
+        oscGain.gain.setValueAtTime(0.0001, now);
+        oscGain.gain.linearRampToValueAtTime(vol, now + 0.0015);
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+
+        osc.connect(oscGain);
+        oscGain.connect(panner);
+        panner.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.022);
+
+        if (noiseBuffer) {
+          const clickSrc = audioCtx.createBufferSource();
+          clickSrc.buffer = noiseBuffer;
+          const hp = audioCtx.createBiquadFilter();
+          hp.type = 'bandpass';
+          hp.frequency.setValueAtTime(2700 * jitter, now);
+          hp.Q.setValueAtTime(4.2, now);
+
+          const clickGain = audioCtx.createGain();
+          clickGain.gain.setValueAtTime(vol * 0.6, now);
+          clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.007);
+
+          clickSrc.connect(hp);
+          hp.connect(clickGain);
+          clickGain.connect(panner);
+          clickSrc.start(now, Math.random() * 1.2, 0.01);
+        }
+      }
+
+      // Swoosh la click
+      function playSwoosh() {
+        if (!isEnabled) return;
+        setupAudio();
+        if (!audioCtx || !noiseBuffer) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const clickPanner = audioCtx.createStereoPanner();
+        clickPanner.pan.setValueAtTime(currentPan, now);
+
+        const airSrc = audioCtx.createBufferSource();
+        airSrc.buffer = noiseBuffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.Q.value = 2.6;
+        filter.frequency.setValueAtTime(210, now);
+        filter.frequency.exponentialRampToValueAtTime(1400, now + 0.08);
+        filter.frequency.exponentialRampToValueAtTime(260, now + 0.22);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.24, now + 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.23);
+
+        airSrc.connect(filter);
+        filter.connect(clickPanner);
+        clickPanner.connect(gain);
+        gain.connect(audioCtx.destination);
+        airSrc.start(now, Math.random() * 1.2, 0.25);
+      }
+
+      function updateMarblePosition() {
+        if (!marbleDot) return;
+        const radius = 19; // lipita pe interiorul cercului de 48px
+        const x = Math.cos(marbleAngle) * radius;
+        const y = Math.sin(marbleAngle) * radius;
+        marbleDot.style.transform = `translate(${x}px, ${y}px)`;
+      }
+      updateMarblePosition();
+
+      function syncCursor(x: number, y: number) {
+        if (!orbitRing) return;
+
+        // Apare instantaneu in pozitia exacta a cursorului de cum intra pe ecran
+        if (!isCursorInside) {
+          isCursorInside = true;
+          orbitRing.style.opacity = '1';
+          lastX = x;
+          lastY = y;
+        }
+
+        // Pozitionare 1:1 fara intarziere
+        orbitRing.style.transform = `translate(${x - 24}px, ${y - 24}px)`;
+
+        if (lastX !== null && lastY !== null) {
+          const dx = x - lastX;
+          const dy = y - lastY;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist > 0.5) {
+            // Bila se roteste pe interior strict proportional cu distanta parcursa de cursor
+            const direction = dx >= 0 ? 1 : -1;
+            marbleAngle += direction * (dist * 0.025);
+            updateMarblePosition();
+
+            if (speedVal) speedVal.textContent = 'În mișcare';
+            if (idleTimer) window.clearTimeout(idleTimer);
+            idleTimer = window.setTimeout(() => {
+              if (speedVal) speedVal.textContent = 'Oprit';
+            }, 90);
+
+            distanceAccumulator += dist;
+            if (distanceAccumulator >= 34) {
+              distanceAccumulator = 0;
+              playDiceTick(Math.min(dist / 40, 1));
+            }
+          }
+        }
+
+        lastX = x;
+        lastY = y;
+
+        currentPan = Math.max(-1, Math.min(1, (x / window.innerWidth) * 2 - 1));
+        if (panVal) {
+          const label = currentPan < -0.15 ? 'Stânga' : currentPan > 0.15 ? 'Dreapta' : 'Centru';
+          panVal.textContent = `${label} (${currentPan.toFixed(2)})`;
+        }
+      }
+
+      document.addEventListener('pointermove', (e) => {
+        syncCursor(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('pointerenter', (e) => {
+        syncCursor(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('pointerleave', () => {
+        isCursorInside = false;
+        lastX = null;
+        lastY = null;
+        if (orbitRing) orbitRing.style.opacity = '0';
+      });
+
+      toggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setupAudio();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        isEnabled = !isEnabled;
+        if (isEnabled) {
+          toggleBtn.textContent = '⏸️ Oprește sunetul';
+          toggleBtn.classList.add('active');
+          playDiceTick(0.6);
+          setTimeout(() => playDiceTick(0.45), 55);
+        } else {
+          toggleBtn.textContent = '🔊 Activează sunetul (Zaruri + Swoosh)';
+          toggleBtn.classList.remove('active');
+        }
+      });
+
+      swooshBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!isEnabled) {
+          setupAudio();
+          if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+          isEnabled = true;
+          if (toggleBtn) {
+            toggleBtn.textContent = '⏸️ Oprește sunetul';
+            toggleBtn.classList.add('active');
+          }
+        }
+        playSwoosh();
+      });
+
+      document.addEventListener('mousedown', () => {
+        if (orbitRing) orbitRing.classList.add('click-pulse');
+        playSwoosh();
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (orbitRing) orbitRing.classList.remove('click-pulse');
+      });
+    </script>
+
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0b0714;
+        color: #f8fafc;
+        font-family: 'Inter', system-ui, sans-serif;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      #orbit-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(192, 132, 252, 0.55);
+        pointer-events: none;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        will-change: transform;
+      }
+
+      #marble-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #f0abfc;
+        box-shadow: 0 0 10px #e879f9;
+        will-change: transform;
+      }
+
+      #orbit-ring.click-pulse {
+        border-color: #38bdf8;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
+      }
+
+      .stage {
+        max-width: 650px;
+        background: #130e24;
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: 20px;
+        padding: 36px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(147, 51, 234, 0.25);
+        border: 1px solid rgba(168, 85, 247, 0.45);
+        color: #e9d5ff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 999px;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        margin: 0 0 14px;
+        line-height: 1.3;
+      }
+
+      p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin: 0 0 24px;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #9333ea, #6366f1);
+        color: #fff;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+
+      .btn-primary.active {
+        background: linear-gradient(135deg, #059669, #10b981);
+      }
+
+      .btn-secondary {
+        background: #1a1333;
+        color: #e9d5ff;
+        border: 1px solid rgba(168, 85, 247, 0.4);
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+
+      .meter-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        background: #0b0714;
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        border-radius: 12px;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      .meter-box strong {
+        color: #f0abfc;
+      }
+
+      .back-link {
+        color: #c084fc;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+    </style>
+  </body>
+</html>

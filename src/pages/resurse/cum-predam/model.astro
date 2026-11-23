@@ -1,0 +1,942 @@
+﻿---
+const pageTitle = "Cum predăm — Model lecție: Numărarea divizorilor și testul de număr prim | Viitorul Digital";
+const pageDescription = "Model complet de predare (Nivel Gimnaziu): Numărarea divizorilor și testul de număr prim — Model vizual, Flowgorithm, Pseudocod, Python și C++.";
+const canonicalUrl = "https://www.viitoruldigital.ro/resurse/cum-predam/model";
+
+const codePythonBeginners = `# Afisam mesajul explicativ si citim numarul natural nenul
+print("Introduceti numarul natural:")
+numar = int(input())
+
+# Initializam contorul divizorilor cu 0
+contor_divizori = 0
+
+# Numaram toti divizorii de la 1 la numar
+for divizor in range(1, numar + 1):
+    if numar % divizor == 0:
+        contor_divizori = contor_divizori + 1
+
+# Afisam numarul de divizori si verificam daca este prim
+print("Numar divizori:", contor_divizori)
+if contor_divizori == 2:
+    print("Rezultat: PRIM")
+else:
+    print("Rezultat: NU ESTE PRIM")`;
+
+const codePythonFunctions = `def numara_divizori(numar):
+    contor_divizori = 0
+    for divizor in range(1, numar + 1):
+        if numar % divizor == 0:
+            contor_divizori = contor_divizori + 1
+    return contor_divizori
+
+def main():
+    print("Introduceti numarul natural:")
+    numar = int(input())
+    total_divizori = numara_divizori(numar)
+    print("Numar divizori:", total_divizori)
+    if total_divizori == 2:
+        print("Rezultat: PRIM")
+    else:
+        print("Rezultat: NU ESTE PRIM")
+
+main()`;
+
+const codeCppBeginners = `#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaram variabila pentru numarul citit si contorul de divizori
+    int numar;
+    int contorDivizori = 0;
+
+    // Afisam mesajul explicativ si citim numarul natural nenul
+    cout << "Introduceti numarul natural: " << endl;
+    cin >> numar;
+
+    // Parcurgem toti candidatii de la 1 la numar si numaram divizorii
+    for (int divizor = 1; divizor <= numar; divizor++) {
+        if (numar % divizor == 0) {
+            contorDivizori = contorDivizori + 1;
+        }
+    }
+
+    // Afisam numarul total de divizori
+    cout << "Numar divizori: " << contorDivizori << endl;
+
+    // Un numar este prim daca si numai daca are exact 2 divizori
+    if (contorDivizori == 2) {
+        cout << "Rezultat: PRIM" << endl;
+    } else {
+        cout << "Rezultat: NU ESTE PRIM" << endl;
+    }
+
+    return 0;
+}`;
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="vd-orbit-ring" aria-hidden="true"><div id="vd-marble-dot"></div></div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="brand">
+          <span class="brand-badge">VD</span>
+          <span>Viitorul Digital</span>
+        </a>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Acasă</a>
+          <span>/</span>
+          <a href="/#resurse">Resurse</a>
+          <span>/</span>
+          <span class="muted-crumb">Cum predăm</span>
+          <span>/</span>
+          <span class="current">Model</span>
+        </nav>
+        <button id="vdAudioToggle" class="audio-pill" type="button">🔇 Sunet</button>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="lesson-hero">
+        <div class="tags-row">
+          <span class="tag tag-purple">Resurse • Cum predăm / Model (v1.4.0)</span>
+          <span class="tag tag-outline">Nivel Gimnaziu</span>
+          <span class="tag tag-outline">Buclă FOR + Contor + Decizie finală</span>
+        </div>
+        <h1>Fișă de predare — Programul 3: Numărarea divizorilor și testul de număr prim</h1>
+        <p class="subtitle">
+          Model complet de predare folosit la clasă: de la înțelegerea vizuală a problemei și simularea pe hârtie, la schema logică Flowgorithm și implementarea duală în Python și C++.
+        </p>
+      </section>
+
+      <!-- ENUNȚUL PROBLEMEI -->
+      <section class="card problem-box">
+        <h2>Enunțul problemei</h2>
+        <p class="statement">
+          Se citește un număr natural nenul <code>n</code> (<code>n ≥ 1</code>). Să se determine câți divizori naturali are <code>n</code> și să se afișeze mesajul <strong>„PRIM”</strong> dacă numărul este prim, respectiv <strong>„NU ESTE PRIM”</strong> în caz contrar.
+        </p>
+        <div class="io-grid">
+          <div class="io-item">
+            <span class="io-label">Date de intrare</span>
+            <p>Un număr natural nenul <code>n</code> (<code>n ≥ 1</code>), citit după afișarea mesajului explicativ <code>„Introduceti numarul natural:”</code>.</p>
+          </div>
+          <div class="io-item">
+            <span class="io-label">Date de ieșire</span>
+            <p>Mesaje explicite cu numărul total de divizori (<code>„Numar divizori: k”</code>) și concluzia (<code>„Rezultat: PRIM”</code> sau <code>„Rezultat: NU ESTE PRIM”</code>).</p>
+          </div>
+          <div class="io-item io-full">
+            <span class="io-label">Exemple</span>
+            <p>
+              Pentru <code>n = 7</code> se afișează <code>Numar divizori: 2</code> și <code>Rezultat: PRIM</code>; pentru <code>n = 9</code> se afișează <code>Numar divizori: 3</code> și <code>Rezultat: NU ESTE PRIM</code>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. ÎNȚELEGEREA ENUNȚULUI ȘI MODELUL VIZUAL -->
+      <section class="card">
+        <h2>1. Înțelegerea enunțului și a datelor (Analiza problemei)</h2>
+        <p class="section-intro">Modelul vizual al problemei (numărarea divizorilor și verificarea condiției <code>contorDivizori == 2</code>):</p>
+
+        <figure class="visual-figure">
+          <svg viewBox="0 0 960 395" width="100%" role="img" aria-label="Testul de număr prim prin numărarea divizorilor">
+            <rect x="2" y="2" width="956" height="391" rx="14" fill="#fcfaff" stroke="#e9d5ff" stroke-width="2" />
+            <text x="480" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#3b0764">
+              TESTUL DE NUMĂR PRIM PRIN NUMĂRAREA DIVIZORILOR (contorDivizori == 2)
+            </text>
+
+            <!-- CARD 1: n = 7 -->
+            <rect x="24" y="54" width="290" height="270" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" />
+            <path d="M24 66 Q24 54 36 54 L302 54 Q314 54 314 66 L314 90 L24 90 Z" fill="#16a34a" />
+            <text x="169" y="77" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">EXEMPLU 1: n = 7</text>
+            <text x="169" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#334155">Divizorii naturali ai lui 7:</text>
+            <rect x="108" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2" />
+            <text x="134" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#15803d">1</text>
+            <rect x="178" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2" />
+            <text x="204" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#15803d">7</text>
+            <text x="169" y="198" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0f172a">contorDivizori = 2</text>
+            <text x="169" y="218" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#15803d">(Are exact 2 divizori: 1 și n)</text>
+            <rect x="44" y="242" width="250" height="62" rx="10" fill="#16a34a" />
+            <text x="169" y="268" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Numar divizori: 2</text>
+            <text x="169" y="289" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff">"PRIM"</text>
+
+            <!-- CARD 2: n = 9 -->
+            <rect x="335" y="54" width="290" height="270" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2" />
+            <path d="M335 66 Q335 54 347 54 L613 54 Q625 54 625 66 L625 90 L335 90 Z" fill="#e11d48" />
+            <text x="480" y="77" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">EXEMPLU 2: n = 9</text>
+            <text x="480" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#334155">Divizorii naturali ai lui 9:</text>
+            <rect x="387" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#e11d48" stroke-width="2" />
+            <text x="413" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#be123c">1</text>
+            <rect x="454" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#e11d48" stroke-width="2" />
+            <text x="480" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#be123c">3</text>
+            <rect x="521" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#e11d48" stroke-width="2" />
+            <text x="547" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#be123c">9</text>
+            <text x="480" y="198" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0f172a">contorDivizori = 3</text>
+            <text x="480" y="218" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#be123c">(3 ≠ 2 → număr compus)</text>
+            <rect x="355" y="242" width="250" height="62" rx="10" fill="#e11d48" />
+            <text x="480" y="268" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Numar divizori: 3</text>
+            <text x="480" y="289" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff">"NU ESTE PRIM"</text>
+
+            <!-- CARD 3: n = 1 -->
+            <rect x="646" y="54" width="290" height="270" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" />
+            <path d="M646 66 Q646 54 658 54 L924 54 Q936 54 936 66 L936 90 L646 90 Z" fill="#7c3aed" />
+            <text x="791" y="77" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">CAZ SPECIAL: n = 1</text>
+            <text x="791" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#334155">Divizorii naturali ai lui 1:</text>
+            <rect x="765" y="130" width="52" height="38" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2" />
+            <text x="791" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#6d28d9">1</text>
+            <text x="791" y="198" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0f172a">contorDivizori = 1</text>
+            <text x="791" y="218" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6d28d9">(1 ≠ 2 → 1 nu este prim!)</text>
+            <rect x="666" y="242" width="250" height="62" rx="10" fill="#7c3aed" />
+            <text x="791" y="268" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Numar divizori: 1</text>
+            <text x="791" y="289" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#ffffff">"NU ESTE PRIM"</text>
+
+            <!-- BOTTOM DEFINITION BAR -->
+            <rect x="24" y="338" width="912" height="40" rx="8" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1.5" />
+            <text x="480" y="363" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#4c1d95">
+              Definiție matematică: Un număr natural este PRIM dacă și numai dacă are exact 2 divizori naturali (contorDivizori == 2).
+            </text>
+          </svg>
+          <figcaption>Figura 1: Comparație între un număr prim (7 → 2 divizori), un număr compus (9 → 3 divizori) și numărul 1 (1 divizor).</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 28%;">Element de analiză</th>
+                <th>Detaliere pentru elevi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Date de intrare</strong></td>
+                <td>Un număr natural nenul: <code>numar</code> (<code>n ≥ 1</code>), precedat de un mesaj explicativ afișat pe ecran.</td>
+              </tr>
+              <tr>
+                <td><strong>Date de ieșire</strong></td>
+                <td>Numărul total de divizori (<code>"Numar divizori: ..."</code>) și mesajul <code>"Rezultat: PRIM"</code> sau <code>"Rezultat: NU ESTE PRIM"</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Legătura cu definiția matematică</strong></td>
+                <td>
+                  <ul class="clean-list">
+                    <li>Un număr natural este prim dacă are <strong>exact 2 divizori naturali distincți</strong>: pe 1 și pe el însuși.</li>
+                    <li>Folosim o variabilă contor (<code>contorDivizori</code>) inițializată cu <code>0</code> înaintea buclei, pe care o mărim cu <code>1</code> ori de câte ori găsim un divizor.</li>
+                    <li>După terminarea buclei, verificăm dacă <code>contorDivizori == 2</code>. Astfel, numărul <code>1</code> (care are doar 1 divizor) este clasificat automat corect ca <strong>„NU ESTE PRIM”</strong>.</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. REZOLVAREA PE HÂRTIE -->
+      <section class="card">
+        <h2>2. Rezolvarea „pe hârtie” (Simulare pentru <code>numar = 5</code>)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pas (<code>divizor</code>)</th>
+                <th>Rest (<code>5 % divizor</code>)</th>
+                <th>Este divizor?</th>
+                <th><code>contorDivizori</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Inițializare</td>
+                <td>—</td>
+                <td>—</td>
+                <td><code>0</code></td>
+              </tr>
+              <tr class="row-highlight">
+                <td><code>1</code></td>
+                <td><code>5 % 1 = 0</code></td>
+                <td><span class="badge-yes">Da</span></td>
+                <td><code>0 + 1 = 1</code></td>
+              </tr>
+              <tr>
+                <td><code>2</code></td>
+                <td><code>5 % 2 = 1</code></td>
+                <td><span class="badge-no">Nu</span></td>
+                <td><code>1</code></td>
+              </tr>
+              <tr>
+                <td><code>3</code></td>
+                <td><code>5 % 3 = 2</code></td>
+                <td><span class="badge-no">Nu</span></td>
+                <td><code>1</code></td>
+              </tr>
+              <tr>
+                <td><code>4</code></td>
+                <td><code>5 % 4 = 1</code></td>
+                <td><span class="badge-no">Nu</span></td>
+                <td><code>1</code></td>
+              </tr>
+              <tr class="row-highlight">
+                <td><code>5</code></td>
+                <td><code>5 % 5 = 0</code></td>
+                <td><span class="badge-yes">Da</span></td>
+                <td><code>1 + 1 = 2</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout-success">
+          <strong>Verificare finală:</strong> <code>contorDivizori == 2</code> este adevărat → programul afișează <code>Numar divizori: 2</code> și <code>Rezultat: PRIM</code>.
+        </p>
+      </section>
+
+      <!-- 3. DICȚIONARUL DE DATE -->
+      <section class="card">
+        <h2>3. Alegerea variabilelor și a rolului lor (Dicționarul de date — Declare)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nume variabilă</th>
+                <th>Tip</th>
+                <th>Valoare inițială</th>
+                <th>Rolul în algoritm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>numar</code></td>
+                <td><code>Integer</code></td>
+                <td><code>Input</code></td>
+                <td>Reține numărul natural nenul citit de la tastatură.</td>
+              </tr>
+              <tr>
+                <td><code>divizor</code></td>
+                <td><code>Integer</code></td>
+                <td><code>1</code> (automat în For)</td>
+                <td>Numărătorul buclei; testează pe rând fiecare candidat între <code>1</code> și <code>numar</code>.</td>
+              </tr>
+              <tr>
+                <td><code>contorDivizori</code></td>
+                <td><code>Integer</code></td>
+                <td><code>0</code></td>
+                <td>Numără câți divizori naturali are variabila <code>numar</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. SCHEMA LOGICĂ FLOWGORITHM & PSEUDOCOD -->
+      <section class="card">
+        <h2>4. Construirea algoritmului (Schema logică Flowgorithm & Pseudocod)</h2>
+        <div class="algo-split">
+          <div class="flow-col">
+            <h3>4.1. Schema logică Flowgorithm</h3>
+            <figure class="visual-figure">
+              <svg viewBox="0 0 640 730" width="100%" role="img" aria-label="Schema logică Flowgorithm pentru numărarea divizorilor și testul de număr prim">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#3b0764" />
+                  </marker>
+                </defs>
+                <rect x="2" y="2" width="636" height="726" rx="12" fill="#fcfaff" stroke="#e9d5ff" stroke-width="2" />
+
+                <rect x="145" y="18" width="110" height="36" rx="18" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2" />
+                <text x="200" y="41" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#581c87">Main</text>
+                <line x1="200" y1="54" x2="200" y2="74" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="75" y="76" width="250" height="40" fill="#fef9c3" stroke="#ca8a04" stroke-width="2" />
+                <line x1="87" y1="76" x2="87" y2="116" stroke="#ca8a04" stroke-width="1.5" />
+                <line x1="75" y1="86" x2="325" y2="86" stroke="#ca8a04" stroke-width="1.5" />
+                <text x="204" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#713f12">Integer numar, divizor, contorDivizori</text>
+                <line x1="200" y1="116" x2="200" y2="136" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="85,138 335,138 315,176 65,176" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                <text x="200" y="161" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#14532d">Output "Introduceti numarul natural: "</text>
+                <line x1="200" y1="176" x2="200" y2="196" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="135,198 285,198 265,234 115,234" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+                <text x="200" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#0c4a6e">Input numar</text>
+                <line x1="200" y1="234" x2="200" y2="254" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="115" y="256" width="170" height="36" fill="#ffedd5" stroke="#ea580c" stroke-width="2" />
+                <text x="200" y="278" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#7c2d12">contorDivizori = 0</text>
+                <line x1="200" y1="292" x2="200" y2="318" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="95,320 305,320 325,342 305,364 95,364 75,342" fill="#ffedd5" stroke="#ea580c" stroke-width="2" />
+                <text x="200" y="346" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#7c2d12">For divizor = 1 to numar step 1</text>
+
+                <text x="348" y="335" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#15803d">Next</text>
+                <polyline points="325,342 465,342 465,374" fill="none" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="465,376 575,406 465,436 355,406" fill="#ffe4e6" stroke="#e11d48" stroke-width="2" />
+                <text x="465" y="410" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#881337">numar % divizor == 0</text>
+
+                <text x="580" y="398" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#15803d">True</text>
+                <polyline points="575,406 605,406 605,446" fill="none" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+                <rect x="485" y="448" width="135" height="34" fill="#ffedd5" stroke="#ea580c" stroke-width="2" />
+                <text x="552" y="469" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="#7c2d12">contorDivizori += 1</text>
+
+                <text x="322" y="398" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#be123c">False</text>
+                <polyline points="355,406 335,406 335,505 458,505" fill="none" stroke="#3b0764" stroke-width="2" />
+                <polyline points="552,482 552,505 472,505" fill="none" stroke="#3b0764" stroke-width="2" />
+                <circle cx="465" cy="505" r="6" fill="#ffffff" stroke="#3b0764" stroke-width="2" />
+
+                <polyline points="465,511 465,526 622,526 622,306 200,306" fill="none" stroke="#3b0764" stroke-width="1.8" marker-end="url(#arrow)" />
+
+                <text x="165" y="382" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#be123c">Done</text>
+                <line x1="200" y1="364" x2="200" y2="486" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="85,488 335,488 315,524 65,524" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                <text x="200" y="510" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600" fill="#14532d">Output "Numar divizori: " &amp; contorDivizori</text>
+                <line x1="200" y1="524" x2="200" y2="546" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <polygon points="200,548 305,578 200,608 95,578" fill="#ffe4e6" stroke="#e11d48" stroke-width="2" />
+                <text x="200" y="582" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#881337">contorDivizori == 2</text>
+
+                <text x="62" y="570" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#be123c">False</text>
+                <polyline points="95,578 55,578 55,616" fill="none" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+                <polygon points="20,618 190,618 175,652 5,652" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                <text x="97" y="639" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="#14532d">Output "Rezultat: NU ESTE PRIM"</text>
+
+                <text x="312" y="570" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#15803d">True</text>
+                <polyline points="305,578 345,578 345,616" fill="none" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+                <polygon points="240,618 430,618 415,652 225,652" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+                <text x="327" y="639" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#14532d">Output "Rezultat: PRIM"</text>
+
+                <polyline points="97,652 97,672 193,672" fill="none" stroke="#3b0764" stroke-width="2" />
+                <polyline points="327,652 327,672 207,672" fill="none" stroke="#3b0764" stroke-width="2" />
+                <circle cx="200" cy="672" r="6" fill="#ffffff" stroke="#3b0764" stroke-width="2" />
+                <line x1="200" y1="678" x2="200" y2="690" stroke="#3b0764" stroke-width="2" marker-end="url(#arrow)" />
+
+                <rect x="145" y="692" width="110" height="30" rx="15" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2" />
+                <text x="200" y="712" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#581c87">End</text>
+              </svg>
+              <figcaption>Observație: Citirea este precedată de mesaj explicativ, iar ambele rezultate au etichete clare.</figcaption>
+            </figure>
+          </div>
+
+          <div class="pseudo-col">
+            <h3>4.2. Pseudocodul corespondent</h3>
+            <pre class="pseudo-block"><code>ALGORITM NumarDivizoriSiPrim
+DECLARĂ ÎNTREG: numar, divizor, contorDivizori
+ÎNCEPUT (Main)
+    SCRIE "Introduceti numarul natural: "
+    CITEȘTE numar
+    contorDivizori &lt;- 0
+    PENTRU divizor &lt;- 1 PÂNĂ LA numar PAS 1 EXECUTĂ
+        DACĂ numar MOD divizor = 0 ATUNCI
+            contorDivizori &lt;- contorDivizori + 1
+        SFÂRȘIT DACĂ
+    SFÂRȘIT PENTRU
+    SCRIE "Numar divizori: ", contorDivizori
+    DACĂ contorDivizori = 2 ATUNCI
+        SCRIE "Rezultat: PRIM"
+    ALTFEL
+        SCRIE "Rezultat: NU ESTE PRIM"
+    SFÂRȘIT DACĂ
+SFÂRȘIT (End)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CAZURI DE VERIFICARE -->
+      <section class="card">
+        <h2>5. Testarea algoritmului (Cazuri de verificare la clasă)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenariu de test</th>
+                <th>Date de intrare</th>
+                <th>Ieșire așteptată</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Număr prim impar</td>
+                <td><code>7</code></td>
+                <td><code>Numar divizori: 2</code> &nbsp;|&nbsp; <code>Rezultat: PRIM</code></td>
+              </tr>
+              <tr>
+                <td>Singurul număr prim par</td>
+                <td><code>2</code></td>
+                <td><code>Numar divizori: 2</code> &nbsp;|&nbsp; <code>Rezultat: PRIM</code></td>
+              </tr>
+              <tr>
+                <td>Număr compus (pătrat perfect)</td>
+                <td><code>9</code></td>
+                <td><code>Numar divizori: 3</code> &nbsp;|&nbsp; <code>Rezultat: NU ESTE PRIM</code></td>
+              </tr>
+              <tr>
+                <td>Caz limită: numărul 1 (nu este prim)</td>
+                <td><code>1</code></td>
+                <td><code>Numar divizori: 1</code> &nbsp;|&nbsp; <code>Rezultat: NU ESTE PRIM</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6. CODIFICAREA ALGORITMULUI (PYTHON & C++) + TESTER INTERACTIV -->
+      <section class="card">
+        <h2>6. Codificarea algoritmului (Python & C++)</h2>
+        <p class="section-intro">Compară implementarea pe trei niveluri și testează algoritmul direct în pagină:</p>
+
+        <div class="code-tabs">
+          <div class="tab-buttons" role="tablist">
+            <button class="tab-btn active" data-tab="py-beg" role="tab" aria-selected="true">6.1. Python Beginners</button>
+            <button class="tab-btn" data-tab="py-fn" role="tab" aria-selected="false">6.2. Python Functions</button>
+            <button class="tab-btn" data-tab="cpp-beg" role="tab" aria-selected="false">6.3. C++ Beginners</button>
+            <button class="copy-btn" id="copyCodeBtn" type="button">Copiază codul</button>
+          </div>
+
+          <div class="tab-panel active" id="panel-py-beg">
+            <pre><code id="code-py-beg">{codePythonBeginners}</code></pre>
+          </div>
+          <div class="tab-panel" id="panel-py-fn">
+            <pre><code id="code-py-fn">{codePythonFunctions}</code></pre>
+          </div>
+          <div class="tab-panel" id="panel-cpp-beg">
+            <pre><code id="code-cpp-beg">{codeCppBeginners}</code></pre>
+          </div>
+        </div>
+
+        <div class="interactive-runner">
+          <h3>Testează algoritmul interactiv (Simulator execuție)</h3>
+          <p>Introdu un număr natural <code>n ≥ 1</code> sau apasă pe unul dintre cazurile de test din fișă:</p>
+
+          <div class="preset-buttons">
+            <button type="button" class="preset-btn" data-val="7">Test 1: n = 7</button>
+            <button type="button" class="preset-btn" data-val="2">Test 2: n = 2</button>
+            <button type="button" class="preset-btn" data-val="9">Test 3: n = 9</button>
+            <button type="button" class="preset-btn" data-val="1">Test 4 (limită): n = 1</button>
+          </div>
+
+          <div class="runner-controls">
+            <label for="inputN"><strong>numar =</strong></label>
+            <input type="number" id="inputN" min="1" max="100000" value="7" />
+            <button type="button" id="runAlgoBtn" class="run-btn">Rulează și verifică</button>
+          </div>
+
+          <div class="console-output" id="consoleOutput" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {new Date().getFullYear()} Viitorul Digital — Resurse / Cum predăm / Model (v1.4.0)</p>
+      </div>
+    </footer>
+
+    <script>
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+      let activeTabId = 'py-beg';
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          if (!target) return;
+          activeTabId = target;
+
+          tabBtns.forEach((b) => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          tabPanels.forEach((p) => p.classList.remove('active'));
+
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          document.getElementById(`panel-${target}`)?.classList.add('active');
+        });
+      });
+
+      const copyBtn = document.getElementById('copyCodeBtn');
+      copyBtn?.addEventListener('click', async () => {
+        const codeEl = document.getElementById(`code-${activeTabId}`);
+        if (!codeEl) return;
+        await navigator.clipboard.writeText(codeEl.textContent || '');
+        const original = copyBtn.textContent;
+        copyBtn.textContent = 'Copiat!';
+        setTimeout(() => { copyBtn.textContent = original; }, 1600);
+      });
+
+      const inputN = document.getElementById('inputN') as HTMLInputElement | null;
+      const runBtn = document.getElementById('runAlgoBtn');
+      const outputBox = document.getElementById('consoleOutput');
+      const presetBtns = document.querySelectorAll('.preset-btn');
+
+      function runAlgorithm(n: number) {
+        if (!outputBox) return;
+        if (!Number.isInteger(n) || n < 1) {
+          outputBox.innerHTML = `<span class="err">Eroare: Te rog introdu un număr natural nenul (n ≥ 1).</span>`;
+          return;
+        }
+        if (n > 100000) {
+          outputBox.innerHTML = `<span class="err">Pentru simulatorul din pagină, folosește un număr n ≤ 100.000.</span>`;
+          return;
+        }
+
+        const divizori: number[] = [];
+        for (let d = 1; d <= n; d++) {
+          if (n % d === 0) divizori.push(d);
+        }
+
+        const contor = divizori.length;
+        const estePrim = contor === 2;
+        const rezultatText = estePrim ? 'PRIM' : 'NU ESTE PRIM';
+        const divizoriList = divizori.length <= 25 ? divizori.join(', ') : `${divizori.slice(0, 20).join(', ')} ... (${contor} divizori)`;
+
+        outputBox.innerHTML = `
+          <div class="console-line muted">&gt; Introduceti numarul natural: <strong>${n}</strong></div>
+          <div class="console-line">&gt; Divizorii găsiți: [${divizoriList}]</div>
+          <div class="console-line">&gt; <strong>Numar divizori: ${contor}</strong></div>
+          <div class="console-line">&gt; <strong class="${estePrim ? 'ok' : 'warn'}">Rezultat: ${rezultatText}</strong></div>
+        `;
+      }
+
+      runBtn?.addEventListener('click', () => runAlgorithm(Number(inputN?.value)));
+      presetBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const val = Number(btn.getAttribute('data-val'));
+          if (inputN) inputN.value = String(val);
+          runAlgorithm(val);
+        });
+      });
+      runAlgorithm(7);
+
+      // Cursor + Sunet Zaruri + Swoosh (v1.4.0)
+      const btn = document.getElementById('vdAudioToggle');
+      const ring = document.getElementById('vd-orbit-ring');
+      const dot = document.getElementById('vd-marble-dot');
+      let audioCtx: AudioContext | null = null, noiseBuffer: AudioBuffer | null = null, isEnabled = false;
+      let isInside = false, lastX: number | null = null, lastY: number | null = null, currentPan = 0;
+      let marbleAngle = -Math.PI / 4, distAcc = 0;
+
+      function setupAudio() {
+        if (audioCtx) return;
+        const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        audioCtx = new AC();
+        const len = audioCtx.sampleRate * 2;
+        noiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      }
+
+      function playDiceTick(intensity: number) {
+        if (!isEnabled || !audioCtx) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const panner = audioCtx.createStereoPanner();
+        panner.pan.setValueAtTime(currentPan, now);
+
+        const jitter = 0.9 + Math.random() * 0.24;
+        const baseFreq = (1600 + intensity * 550) * jitter;
+        const osc = audioCtx.createOscillator();
+        const oscGain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(baseFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.45, now + 0.016);
+
+        const vol = Math.min(0.022 + intensity * 0.048, 0.075);
+        oscGain.gain.setValueAtTime(0.0001, now);
+        oscGain.gain.linearRampToValueAtTime(vol, now + 0.0015);
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+
+        osc.connect(oscGain); oscGain.connect(panner); panner.connect(audioCtx.destination);
+        osc.start(now); osc.stop(now + 0.022);
+
+        if (noiseBuffer) {
+          const src = audioCtx.createBufferSource();
+          src.buffer = noiseBuffer;
+          const hp = audioCtx.createBiquadFilter();
+          hp.type = 'bandpass'; hp.frequency.setValueAtTime(2700 * jitter, now); hp.Q.setValueAtTime(4.2, now);
+          const cg = audioCtx.createGain();
+          cg.gain.setValueAtTime(vol * 0.6, now);
+          cg.gain.exponentialRampToValueAtTime(0.0001, now + 0.007);
+          src.connect(hp); hp.connect(cg); cg.connect(panner);
+          src.start(now, Math.random() * 1.2, 0.01);
+        }
+      }
+
+      function playSwoosh() {
+        if (!isEnabled) return;
+        setupAudio();
+        if (!audioCtx || !noiseBuffer) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const panner = audioCtx.createStereoPanner();
+        panner.pan.setValueAtTime(currentPan, now);
+
+        const src = audioCtx.createBufferSource();
+        src.buffer = noiseBuffer;
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass'; filter.Q.value = 2.6;
+        filter.frequency.setValueAtTime(210, now);
+        filter.frequency.exponentialRampToValueAtTime(1400, now + 0.08);
+        filter.frequency.exponentialRampToValueAtTime(260, now + 0.22);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.24, now + 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.23);
+
+        src.connect(filter); filter.connect(panner); panner.connect(audioCtx.destination);
+        src.start(now, Math.random() * 1.2, 0.25);
+      }
+
+      function updateDot() {
+        if (!dot) return;
+        const r = 17;
+        dot.style.transform = `translate(${Math.cos(marbleAngle) * r}px, ${Math.sin(marbleAngle) * r}px)`;
+      }
+      updateDot();
+
+      function syncCursor(x: number, y: number) {
+        if (!ring) return;
+        if (!isInside) { isInside = true; ring.style.opacity = '1'; lastX = x; lastY = y; }
+        ring.style.transform = `translate(${x - 22}px, ${y - 22}px)`;
+        if (lastX !== null && lastY !== null) {
+          const dx = x - lastX, dy = y - lastY;
+          const dist = Math.hypot(dx, dy);
+          if (dist > 0.5) {
+            marbleAngle += (dx >= 0 ? 1 : -1) * (dist * 0.025);
+            updateDot();
+            distAcc += dist;
+            if (distAcc >= 34) {
+              distAcc = 0;
+              playDiceTick(Math.min(dist / 40, 1));
+            }
+          }
+        }
+        lastX = x; lastY = y;
+        currentPan = Math.max(-1, Math.min(1, (x / window.innerWidth) * 2 - 1));
+      }
+
+      document.addEventListener('pointermove', (e) => syncCursor(e.clientX, e.clientY));
+      document.addEventListener('pointerenter', (e) => syncCursor(e.clientX, e.clientY));
+      document.addEventListener('pointerleave', () => {
+        isInside = false; lastX = null; lastY = null;
+        if (ring) ring.style.opacity = '0';
+      });
+
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setupAudio();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        isEnabled = !isEnabled;
+        if (isEnabled) {
+          btn.textContent = '🔊 Sunet';
+          btn.classList.add('active');
+          playDiceTick(0.6);
+          setTimeout(() => playDiceTick(0.45), 55);
+        } else {
+          btn.textContent = '🔇 Sunet';
+          btn.classList.remove('active');
+        }
+      });
+
+      document.addEventListener('mousedown', () => {
+        if (ring) ring.classList.add('click-pulse');
+        playSwoosh();
+      });
+      document.addEventListener('mouseup', () => {
+        if (ring) ring.classList.remove('click-pulse');
+      });
+    </script>
+
+    <style>
+      :root {
+        --bg: #faf8ff;
+        --surface: #ffffff;
+        --surface-alt: #f5f0ff;
+        --text: #1e1035;
+        --text-muted: #5b4b7a;
+        --border: #e9d5ff;
+        --primary: #7c3aed;
+        --primary-dark: #5b21b6;
+        --code-bg: #1e1338;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: linear-gradient(180deg, #f3e8ff 0%, #faf8ff 24%, #ffffff 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      #vd-orbit-ring {
+        position: fixed; top: 0; left: 0; width: 44px; height: 44px;
+        border-radius: 50%; border: 1.5px solid rgba(124, 58, 237, 0.55);
+        pointer-events: none; z-index: 9998; display: grid; place-items: center;
+        opacity: 0; will-change: transform;
+      }
+      #vd-marble-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #9333ea; box-shadow: 0 0 8px rgba(147, 51, 234, 0.65); will-change: transform;
+      }
+      #vd-orbit-ring.click-pulse {
+        border-color: #6366f1; box-shadow: 0 0 16px rgba(99, 102, 241, 0.45);
+      }
+
+      .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+      .site-header {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+
+      .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+      .brand-badge { background: linear-gradient(135deg, #7c3aed, #9333ea); color: #fff; padding: 4px 9px; border-radius: 7px; font-size: 0.85rem; }
+
+      .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); }
+      .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 500; }
+      .breadcrumb a:hover { text-decoration: underline; }
+      .breadcrumb .current { font-weight: 700; color: var(--primary-dark); }
+
+      .audio-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: var(--surface-alt); border: 1px solid #d8b4fe; color: var(--primary-dark);
+        font-size: 0.84rem; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+        cursor: pointer; transition: all 0.2s ease;
+      }
+      .audio-pill:hover, .audio-pill.active {
+        background: #7c3aed; color: #ffffff; border-color: #7c3aed;
+        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+      }
+
+      .main-content { padding: 36px 20px 64px; }
+      .lesson-hero { margin-bottom: 30px; }
+
+      .tags-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+      .tag { font-size: 0.8rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+      .tag-purple { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+      .tag-outline { background: #ffffff; color: var(--text-muted); border: 1px solid var(--border); }
+
+      h1 { font-size: clamp(1.65rem, 3vw, 2.3rem); line-height: 1.25; margin: 0 0 12px; color: #2e1065; }
+      .subtitle { font-size: 1.05rem; color: var(--text-muted); margin: 0; }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 26px;
+        margin-bottom: 24px;
+        box-shadow: 0 6px 24px rgba(124, 58, 237, 0.06);
+      }
+
+      .card h2 {
+        margin-top: 0; margin-bottom: 16px; font-size: 1.3rem; color: #3b0764;
+        border-bottom: 2px solid #f5f0ff; padding-bottom: 10px;
+      }
+      .card h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.05rem; color: #4c1d95; }
+
+      .problem-box { border-left: 5px solid #7c3aed; background: linear-gradient(180deg, #fcfaff 0%, #ffffff 100%); }
+      .statement { font-size: 1.05rem; margin-bottom: 18px; color: #1e1035; }
+
+      .io-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+      .io-item { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+      .io-full { grid-column: 1 / -1; }
+      .io-label { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); margin-bottom: 4px; }
+      .io-item p { margin: 0; font-size: 0.95rem; color: #3b2d54; }
+
+      code {
+        font-family: 'JetBrains Mono', monospace;
+        background: #f3e8ff;
+        border: 1px solid #e9d5ff;
+        padding: 2px 6px;
+        border-radius: 5px;
+        font-size: 0.88em;
+        color: #5b21b6;
+      }
+
+      .visual-figure { margin: 16px 0 22px; }
+      .visual-figure figcaption { text-align: center; font-size: 0.88rem; color: var(--text-muted); margin-top: 8px; }
+
+      .table-wrap { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+      th, td { border: 1px solid var(--border); padding: 11px 14px; text-align: left; vertical-align: top; }
+      th { background: #f5f0ff; font-weight: 700; color: #4c1d95; }
+
+      .clean-list { margin: 0; padding-left: 18px; }
+      .clean-list li { margin-bottom: 6px; }
+      .row-highlight { background: #f0fdf4; }
+
+      .badge-yes { background: #dcfce7; color: #15803d; border: 1px solid #86efac; font-weight: 700; padding: 2px 10px; border-radius: 999px; font-size: 0.85rem; }
+      .badge-no { background: #f3e8ff; color: #6b21a8; padding: 2px 10px; border-radius: 999px; font-size: 0.85rem; }
+
+      .callout-success {
+        margin: 16px 0 0; background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d;
+        padding: 12px 16px; border-radius: 10px;
+      }
+
+      .algo-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: start; }
+      @media (max-width: 820px) { .algo-split { grid-template-columns: 1fr; } }
+
+      .pseudo-block {
+        background: #23163d; border: 1px solid #4c1d95; color: #f8fafc;
+        padding: 18px; border-radius: 12px; overflow-x: auto;
+        font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.6; margin: 0;
+      }
+      .pseudo-block code { background: transparent; border: none; color: inherit; padding: 0; }
+
+      .code-tabs { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+      .tab-buttons { display: flex; flex-wrap: wrap; align-items: center; background: #f5f0ff; border-bottom: 1px solid var(--border); padding: 8px 10px; gap: 6px; }
+      .tab-btn { background: transparent; border: none; color: #5b4b7a; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s ease; }
+      .tab-btn:hover { color: #3b0764; background: #e9d5ff; }
+      .tab-btn.active { background: #7c3aed; color: #ffffff; }
+
+      .copy-btn { margin-left: auto; background: #ffffff; border: 1px solid #d8b4fe; color: #5b21b6; font-size: 0.82rem; font-weight: 600; padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+      .copy-btn:hover { background: #f3e8ff; }
+
+      .tab-panel { display: none; background: var(--code-bg); }
+      .tab-panel.active { display: block; }
+      .tab-panel pre { margin: 0; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 1.6; color: #f8fafc; }
+      .tab-panel code { background: transparent; border: none; color: inherit; padding: 0; }
+
+      .interactive-runner { background: #faf5ff; border: 1px solid #d8b4fe; border-radius: 12px; padding: 20px; }
+      .preset-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+      .preset-btn { background: #ffffff; border: 1px solid #d8b4fe; color: #4c1d95; font-size: 0.84rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+      .preset-btn:hover { border-color: #7c3aed; background: #f3e8ff; }
+
+      .runner-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+      .runner-controls input { width: 130px; padding: 8px 12px; background: #ffffff; color: #1e1035; border: 1px solid #c084fc; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; }
+      .run-btn { background: linear-gradient(135deg, #7c3aed, #9333ea); color: #ffffff; border: none; font-weight: 700; font-size: 0.92rem; padding: 9px 18px; border-radius: 8px; cursor: pointer; }
+      .run-btn:hover { opacity: 0.92; }
+
+      .console-output { background: #1e1338; border: 1px solid #4c1d95; color: #f3e8ff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; padding: 14px 16px; border-radius: 10px; line-height: 1.7; }
+      .console-line.muted { color: #c4b5fd; }
+      .console-output .ok { color: #4ade80; }
+      .console-output .warn { color: #fda4af; }
+      .console-output .err { color: #fca5a5; }
+
+      .site-footer { border-top: 1px solid var(--border); background: #ffffff; padding: 22px 0; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+    </style>
+  </body>
+</html>
