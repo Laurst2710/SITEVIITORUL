@@ -1,0 +1,68 @@
+[
+  {
+    "numar": "46",
+    "titlu": "SumaPare",
+    "fisier": "pbinfo-46-sumapare.astro",
+    "ruta": "/probleme/pbinfo-46-sumapare"
+  },
+  {
+    "numar": "49",
+    "titlu": "Factorial",
+    "fisier": "pbinfo-49-factorial.astro",
+    "ruta": "/probleme/pbinfo-49-factorial"
+  },
+  {
+    "numar": "332",
+    "titlu": "Expresie2",
+    "fisier": "pbinfo-332-expresie2.astro",
+    "ruta": "/probleme/pbinfo-332-expresie2"
+  },
+  {
+    "numar": "335",
+    "titlu": "Expresie3",
+    "fisier": "pbinfo-335-expresie3.astro",
+    "ruta": "/probleme/pbinfo-335-expresie3"
+  },
+  {
+    "numar": "336",
+    "titlu": "Expresie4",
+    "fisier": "pbinfo-336-expresie4.astro",
+    "ruta": "/probleme/pbinfo-336-expresie4"
+  },
+  {
+    "numar": "387",
+    "titlu": "Suma Divizorilor Impari",
+    "fisier": "pbinfo-387-suma-divizorilor-impari.astro",
+    "ruta": "/probleme/pbinfo-387-suma-divizorilor-impari"
+  },
+  {
+    "numar": "1360",
+    "titlu": "Suma Gauss",
+    "fisier": "pbinfo-1360-suma-gauss.astro",
+    "ruta": "/probleme/pbinfo-1360-suma-gauss"
+  },
+  {
+    "numar": "1892",
+    "titlu": "Snorocos",
+    "fisier": "pbinfo-1892-snorocos.astro",
+    "ruta": "/probleme/pbinfo-1892-snorocos"
+  },
+  {
+    "numar": "4523",
+    "titlu": "AfisFactoriale",
+    "fisier": "pbinfo-4523-afisfactoriale.astro",
+    "ruta": "/probleme/pbinfo-4523-afisfactoriale"
+  },
+  {
+    "numar": "4560",
+    "titlu": "Suma3cifre",
+    "fisier": "pbinfo-4560-suma3cifre.astro",
+    "ruta": "/probleme/pbinfo-4560-suma3cifre"
+  },
+  {
+    "numar": "4921",
+    "titlu": "Suma2cifre",
+    "fisier": "pbinfo-4921-suma2cifre.astro",
+    "ruta": "/probleme/pbinfo-4921-suma2cifre"
+  }
+]

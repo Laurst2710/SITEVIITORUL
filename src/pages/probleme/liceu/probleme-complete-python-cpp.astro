@@ -1,0 +1,621 @@
+---
+// Pagina de garda: Liceu - Probleme complete: Python & C++
+// Viitorul Digital
+---
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- START SEO: Meta-etichete pentru indexare si cautare -->
+  <title>Probleme complete: Python &amp; C++ (Liceu) | Viitorul Digital</title>
+  <meta name="description" content="Centralizator de probleme pentru liceu rezolvate în paralel în Python și C++, cu analiză vizuală, simulare pe hârtie, dicționar de date, Flowgorithm și pseudocod." />
+  <link rel="canonical" href="/probleme/liceu/probleme-complete-python-cpp" />
+  <!-- END SEO -->
+  <style>
+    :root {
+      --bg: #0e071d;
+      --card: #180c30;
+      --card-soft: #130926;
+      --border: rgba(192, 132, 252, 0.28);
+      --border-strong: rgba(192, 132, 252, 0.55);
+      --text: #f4efff;
+      --muted: #cfc2ee;
+      --accent: #c084fc;
+      --pill-bg: #241147;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .back:hover { text-decoration: underline; }
+
+    .hero {
+      padding: 28px 30px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #1b0d36 0%, #130826 100%);
+      border: 1px solid var(--border);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 1.95rem;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .method-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .method-step {
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #f3e8ff;
+    }
+
+    .section-title {
+      margin: 30px 0 14px;
+      font-size: 1.3rem;
+      color: #e9d5ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-badge {
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: rgba(192, 132, 252, 0.18);
+      border: 1px solid var(--border-strong);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .tools-grid .box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tools-grid .sub-links {
+      margin-top: auto;
+      padding-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .box {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .box h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      color: #f3e8ff;
+    }
+
+    .box p {
+      margin: 0 0 12px;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .sub-pill {
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: #e9d5ff;
+    }
+
+    .topic-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .topic-list li {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--card-soft);
+      border: 1px solid rgba(192, 132, 252, 0.22);
+      font-size: 0.94rem;
+      color: #ece2ff;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .topic-list li.has-content {
+      border-color: rgba(255, 255, 255, 0.55);
+      background: #211042;
+    }
+
+    .topic-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .dot-active {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .topic-pill {
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: rgba(14, 7, 29, 0.72);
+      border: 1px solid rgba(192, 132, 252, 0.25);
+      font-size: 0.78rem;
+      color: #cfc2ee;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .topic-pill strong {
+      font-weight: 800;
+    }
+
+    .topic-pill.active {
+      background: #ffffff;
+      color: #140926;
+      border-color: #ffffff;
+      font-weight: 700;
+    }
+
+    .topic-pill.active:hover {
+      background: #f3e8ff;
+    }
+
+    @media (max-width: 940px) {
+      .tools-grid, .stations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .search-box {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(192, 132, 252, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-row label {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #f3e8ff;
+    }
+
+    .search-row input {
+      width: 210px;
+      padding: 9px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: #0e071d;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .search-row input:focus {
+      border-color: #ffffff;
+    }
+
+    .search-btn {
+      padding: 9px 16px;
+      border-radius: 10px;
+      border: none;
+      background: #ffffff;
+      color: #140926;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .search-btn:hover {
+      background: #f3e8ff;
+    }
+
+    .search-result {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .search-result a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 10px;
+      background: #211042;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .search-result a:hover {
+      background: #2b1557;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/probleme">← Înapoi la Exemple Probleme</a>
+
+    <header class="hero">
+      <h1>Liceu — Probleme complete: Python &amp; C++</h1>
+      <p>
+        Aici găsești problemele căutate la școală și la teme tratate cap-coadă, în paralel în <strong>Python</strong> și <strong>C++</strong> — nu doar cod aruncat, ci întregul fir logic de la înțelegerea enunțului până la rulare.
+      </p>
+      <div class="method-bar">
+        <span class="method-step">1. Analiză &amp; model vizual</span>
+        <span class="method-step">2. Simulare „pe hârtie”</span>
+        <span class="method-step">3. Dicționar de date</span>
+        <span class="method-step">4. Flowgorithm &amp; Pseudocod</span>
+        <span class="method-step">5. Teste &amp; Cod Python / C++</span>
+      </div>
+      <div class="search-box">
+        <div class="search-row">
+          <label for="problemNumSearch">Caută problemă după număr:</label>
+          <input type="text" id="problemNumSearch" inputmode="numeric" placeholder="ex: 387" autocomplete="off" />
+          <button type="button" class="search-btn" id="problemSearchBtn">Caută</button>
+        </div>
+        <div class="search-result" id="problemSearchResult"></div>
+      </div>
+    </header>
+
+    <h2 class="section-title"><span class="step-badge">Treapta 0</span> Uneltele limbajului în paralel (Python &amp; C++)</h2>
+    <div class="tools-grid">
+      <div class="box">
+        <h3>Operatori și expresii</h3>
+        <p>Împărțire întreagă, rest (<code>%</code>), expresii logice și diferențele de sintaxă dintre Python și C++.</p>
+        <div class="sub-links">
+          <span class="sub-pill">0 probleme</span>
+          <span class="sub-pill">0 exerciții</span>
+          <span class="sub-pill">0 articole</span>
+        </div>
+      </div>
+      <div class="box">
+        <h3>Structura de decizie</h3>
+        <p>Ramificări <code>if / else</code>, condiții compuse și filtrarea cazurilor speciale în ambele limbaje.</p>
+        <div class="sub-links">
+          <span class="sub-pill">0 probleme</span>
+          <span class="sub-pill">0 exerciții</span>
+          <span class="sub-pill">0 articole</span>
+        </div>
+      </div>
+      <div class="box">
+        <h3>Structuri repetitive</h3>
+        <p>Bucle cu numărător (<code>for</code>) și bucle condiționate (<code>while</code>) explicate paralel.</p>
+        <div class="sub-links">
+          <span class="sub-pill">0 probleme</span>
+          <span class="sub-pill">0 exerciții</span>
+          <span class="sub-pill">0 articole</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title"><span class="step-badge">Stațiile de lucru</span> Teme căutate la liceu (organizate pe mod de gândire)</h2>
+    <div class="stations-grid">
+      <div class="box">
+        <h3>Stația 1 · Numere, cifre și reguli</h3>
+        <p>Algoritmi elementari pe numere naturale și întregi.</p>
+        <ul class="topic-list">
+          <li data-subcat="sume-produse-numarari">
+            <div class="topic-head"><span>Sume, produse, numărări</span><span class="dot-active" style="display:none;" title="Fișe disponibile"></span></div>
+            <div class="topic-pills">
+              <a class="topic-pill" data-role="probleme-count" href="/probleme/liceu/sume-produse-numarari"><strong>0</strong> probleme</a>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Maxime și minime</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Cifrele unui număr</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li data-subcat="divizibilitate">
+            <div class="topic-head"><span>Divizibilitate</span><span class="dot-active" style="display:none;" title="Fișe disponibile"></span></div>
+            <div class="topic-pills">
+              <a class="topic-pill" data-role="probleme-count" href="/probleme/liceu/divizibilitate"><strong>0</strong> probleme</a>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Generarea unor șiruri</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Baze de numerație</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Stația 2 · Șiruri de date (Vectori)</h3>
+        <p>Tablouri unidimensionale: parcurgeri, ordonare și eficiență.</p>
+        <ul class="topic-list">
+          <li>
+            <div class="topic-head"><span>Parcurgerea vectorilor</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Ștergeri și inserări în vectori</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Verificarea unor proprietăți</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Sortarea vectorilor</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Interclasare</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Căutare binară</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Probleme cu secvențe</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Vectori caracteristici / frecvență</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Probleme diverse (vectori)</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Stația 3 · Finețe și cazuri speciale</h3>
+        <p>Tehnici punctuale și aplicații variate de liceu.</p>
+        <ul class="topic-list">
+          <li>
+            <div class="topic-head"><span>Operații pe biți</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+          <li>
+            <div class="topic-head"><span>Probleme diverse</span></div>
+            <div class="topic-pills">
+              <span class="topic-pill"><strong>0</strong> probleme</span>
+              <span class="topic-pill"><strong>0</strong> exerciții</span>
+              <span class="topic-pill"><strong>0</strong> articole</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <script>
+    // Registrul problemelor publicate (sursa unica pentru contoare si cautarea dupa numar)
+    const PROBLEME_INDEX = [
+      
+      {
+        numar: '1360',
+        titlu: 'Suma Gauss',
+        subcat: 'sume-produse-numarari',
+        capitol: 'Stația 1 · Sume, produse, numărări',
+        url: '/probleme/pbinfo-1360-suma-gauss'
+      },{
+        numar: '387',
+        titlu: 'Suma Divizorilor Impari',
+        subcat: 'divizibilitate',
+        capitol: 'Stația 1 · Divizibilitate',
+        url: '/probleme/pbinfo-387-suma-divizorilor-impari'
+      }
+    ];
+
+    // 1. Calculam si afisam automat contoarele pe fiecare subcategorie
+    document.querySelectorAll('[data-subcat]').forEach((item) => {
+      const subcat = item.getAttribute('data-subcat');
+      const total = PROBLEME_INDEX.filter((p) => p.subcat === subcat).length;
+      const pill = item.querySelector('[data-role="probleme-count"]');
+      const dot = item.querySelector('.dot-active');
+
+      if (pill) {
+        const label = total === 1 ? 'problemă' : 'probleme';
+        pill.innerHTML = `<strong>${total}</strong> ${label}`;
+        if (total > 0) {
+          pill.classList.add('active');
+          item.classList.add('has-content');
+        }
+      }
+      if (dot) {
+        dot.style.display = total > 0 ? 'inline-block' : 'none';
+      }
+    });
+
+    // 2. Cautarea rapida dupa numar
+    const searchInput = document.getElementById('problemNumSearch');
+    const searchBtn = document.getElementById('problemSearchBtn');
+    const searchResult = document.getElementById('problemSearchResult');
+
+    function cautaProblema(navigateDirect = false) {
+      if (!searchInput || !searchResult) return;
+      const query = searchInput.value.replace(/[^0-9]/g, '').trim();
+
+      if (!query) {
+        searchResult.innerHTML = '';
+        return;
+      }
+
+      const potriviri = PROBLEME_INDEX.filter((p) => p.numar.startsWith(query));
+      const exacta = PROBLEME_INDEX.find((p) => p.numar === query);
+
+      if (navigateDirect && exacta) {
+        window.location.href = exacta.url;
+        return;
+      }
+
+      if (potriviri.length === 0) {
+        searchResult.textContent = `Problema #${query} nu este încă publicată.`;
+        return;
+      }
+
+      searchResult.innerHTML = potriviri
+        .map((p) => `<a href="${p.url}">#${p.numar} — ${p.titlu} (${p.capitol}) →</a>`)
+        .join(' ');
+    }
+
+    searchInput?.addEventListener('input', () => cautaProblema(false));
+    searchInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        cautaProblema(true);
+      }
+    });
+    searchBtn?.addEventListener('click', () => cautaProblema(true));
+  </script>
+</body>
+</html>

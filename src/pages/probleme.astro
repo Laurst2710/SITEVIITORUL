@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemple Probleme | Viitorul Digital</title>
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;background:#0e071d;color:#f4efff}
+    .wrap{max-width:1020px;margin:0 auto;padding:32px 20px 72px}
+    .back{display:inline-block;color:#c084fc;text-decoration:none;font-weight:600;margin-bottom:20px}
+    .hero{padding:24px 28px;border-radius:18px;background:#180c30;border:1px solid rgba(192,132,252,.28);margin-bottom:28px}
+    .hero h1{margin:0 0 6px;font-size:2rem}
+    .hero p{margin:0;color:#b8a7dc}
+    .block{display:grid;grid-template-columns:240px 1fr;gap:20px;padding:20px;border-radius:18px;background:#150a2a;border:1px solid rgba(192,132,252,.2);margin-bottom:20px}
+    .lvl{display:flex;gap:12px;align-items:flex-start}
+    .bar{width:4px;min-height:28px;border-radius:99px;background:#a855f7}
+    .lvl h2{margin:0;font-size:1.05rem}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+    .btn{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;text-decoration:none;color:#f4efff;background:#221144;border:1px solid rgba(192,132,252,.26);font-weight:600;font-size:.93rem}
+    .btn:hover{background:#311863;border-color:#c084fc}
+    .btn.blue{background:#1b2f5c;border-color:#60a5fa}
+    @media(max-width:780px){.block{grid-template-columns:1fr}}
+    .btn.has-content{background:#ffffff;color:#140926;border-color:#ffffff}
+    .btn.has-content:hover{background:#f3e8ff;border-color:#ffffff;color:#140926}
+    a.tynker-active, .btn.tynker-active{background:#ffffff !important;color:#140926 !important;border-color:#ffffff !important}
+    a.tynker-active:hover, .btn.tynker-active:hover{background:#f3e8ff !important;color:#140926 !important;border-color:#ffffff !important}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">← Înapoi la Viitorul Digital</a>
+    <div class="hero">
+      <h1>Exemple Probleme</h1>
+      <p>Selectează nivelul și domeniul pentru a deschide pagina dedicată.</p>
+    </div>
+    <div class="block">
+      <div class="lvl"><span class="bar"></span><h2>Educatie timpurie (4-6 ani)</h2></div>
+      <div class="list">
+        <a class="btn" href="/probleme/educatie-timpurie/scratch-jr">Gândire computațională - Scratch Jr.<span>→</span></a>
+        <a class="btn" href="/probleme/educatie-timpurie/bebras">Gândire computațională - Bebras<span>→</span></a>
+      </div>
+    </div>
+    <div class="block">
+      <div class="lvl"><span class="bar"></span><h2>Scoală Primară</h2></div>
+      <div class="list">
+        <a class="btn" href="/probleme/primara/bebras">Gândire computațională - Bebras<span>→</span></a>
+        <a class="btn" href="/probleme/primara/scratch">Programare blocuri - Scratch<span>→</span></a>
+        <a class="btn" href="/probleme/primara/tynker">Programare blocuri - Tynker<span>→</span></a>
+      </div>
+    </div>
+    <div class="block">
+      <div class="lvl"><span class="bar"></span><h2>Gimnaziu</h2></div>
+      <div class="list">
+        <a class="btn" href="/probleme/gimnaziu/bebras">Gândire computațională - Bebras<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/flowgorithm">Gândire computațională - Flowgorithm<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/scratch">Programare blocuri - Scratch<span>→</span></a>
+        <a class="btn tynker-active" href="/probleme/gimnaziu/tynker">Programare blocuri - Tynker<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/alice-3">Programare blocuri - ALICE 3<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/edublocks-python">Programare blocuri - Edublocks- Python<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/mit-app-inventor">Programare blocuri - MIT App Inventor<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/python">Programare text - Python<span>→</span></a>
+        <a class="btn" href="/probleme/gimnaziu/cpp">Programare text - C++<span>→</span></a>
+      </div>
+    </div>
+    <div class="block">
+      <div class="lvl"><span class="bar"></span><h2>Liceu</h2></div>
+      <div class="list">
+        <a class="btn" href="/probleme/liceu/bebras">Gândire computațională - Bebras<span>→</span></a>
+        <a class="btn" href="/probleme/liceu/flowgorithm">Gândire computațională - Flowgorithm<span>→</span></a>
+        <a class="btn blue" href="/probleme/liceu/probleme-complete-python-cpp">Probleme complete : Python-C++<span>→</span></a>
+        <a class="btn" href="/probleme/liceu/python">Programare text - Python<span>→</span></a>
+        <a class="btn" href="/probleme/liceu/cpp">Programare text - C++<span>→</span></a>
+      </div>
+    </div>
+    <div class="block">
+      <div class="lvl"><span class="bar"></span><h2>Olimpiade</h2></div>
+      <div class="list">
+        <a class="btn" href="/probleme/olimpiade/locale">Locale<span>→</span></a>
+        <a class="btn" href="/probleme/olimpiade/internationale">Internationale<span>→</span></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

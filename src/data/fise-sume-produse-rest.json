@@ -1,0 +1,56 @@
+[
+    {
+        "numar":  "1892",
+        "titlu":  "Snorocos",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #1892 Snorocos: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-1892-snorocos"
+    },
+    {
+        "numar":  "332",
+        "titlu":  "Expresie2",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #332 Expresie2: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-332-expresie2"
+    },
+    {
+        "numar":  "335",
+        "titlu":  "Expresie3",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #335 Expresie3: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-335-expresie3"
+    },
+    {
+        "numar":  "336",
+        "titlu":  "Expresie4",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #336 Expresie4: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-336-expresie4"
+    },
+    {
+        "numar":  "4523",
+        "titlu":  "AfisFactoriale",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #4523 AfisFactoriale: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-4523-afisfactoriale"
+    },
+    {
+        "numar":  "4560",
+        "titlu":  "Suma3cifre",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #4560 Suma3cifre: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-4560-suma3cifre"
+    },
+    {
+        "numar":  "46",
+        "titlu":  "SumaPare",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #46 SumaPare: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-46-sumapare"
+    },
+    {
+        "numar":  "4921",
+        "titlu":  "Suma2cifre",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #4921 Suma2cifre: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-4921-suma2cifre"
+    },
+    {
+        "numar":  "49",
+        "titlu":  "Factorial",
+        "descriere":  "Rezolvare completă pentru problema Pbinfo #49 Factorial: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python.",
+        "ruta":  "/probleme/pbinfo-49-factorial"
+    }
+]

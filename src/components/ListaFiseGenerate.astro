@@ -1,0 +1,18 @@
+---
+import fise from '../data/probleme-generate.json';
+---
+
+{fise.length > 0 ? (
+  <section class="fise-generate">
+    <h2>Fișe generate disponibile ({fise.length})</h2>
+    <ul>
+      {fise.map((fisa) => (
+        <li>
+          <a href={fisa.ruta}>#{fisa.numar} — {fisa.titlu}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+) : (
+  <p>Nu există fișe generate în src/pages/probleme.</p>
+)}

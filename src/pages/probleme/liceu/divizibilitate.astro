@@ -1,0 +1,401 @@
+---
+// Pagina de garda: Divizibilitate (Liceu)
+// Viitorul Digital
+---
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- START SEO: Meta-etichete pentru indexare si cautare -->
+  <title>Divizibilitate — Lista de probleme (Liceu) | Viitorul Digital</title>
+  <meta name="description" content="Lista de probleme la capitolul Divizibilitate pentru liceu, cu filtrare după număr/titlu, categorie și subcategorie, rezolvate în paralel în Python și C++." />
+  <link rel="canonical" href="/probleme/liceu/divizibilitate" />
+  <!-- END SEO -->
+  <style is:global>
+    :root {
+      --bg: #0e071d;
+      --card: #180c30;
+      --card-soft: #130926;
+      --border: rgba(192, 132, 252, 0.28);
+      --border-strong: rgba(192, 132, 252, 0.55);
+      --text: #f4efff;
+      --muted: #cfc2ee;
+      --accent: #c084fc;
+      --pill-bg: #241147;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .back:hover { text-decoration: underline; }
+
+    .list-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .list-header h1 {
+      margin: 0;
+      font-size: 1.85rem;
+      color: #f3e8ff;
+    }
+
+    .count-badge {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #140926;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .filter-panel {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .filter-panel h2 {
+      margin: 0 0 2px;
+      font-size: 1.15rem;
+      color: #f3e8ff;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: #0e071d;
+      color: #ffffff;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #ffffff;
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .btn-filter {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      background: #ffffff;
+      color: #140926;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-filter:hover {
+      background: #f3e8ff;
+    }
+
+    .btn-reset {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card-soft);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .btn-reset:hover {
+      color: #ffffff;
+      border-color: var(--border-strong);
+    }
+
+    .problems-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .prob-item {
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .prob-top {
+      padding: 14px 20px;
+      background: var(--pill-bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .prob-title {
+      margin: 0;
+      font-size: 1.15rem;
+      color: #ffffff;
+    }
+
+    .prob-num {
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .prob-body {
+      padding: 18px 20px;
+    }
+
+    .prob-statement {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .prob-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--card-soft);
+      border: 1px solid rgba(192, 132, 252, 0.18);
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(192, 132, 252, 0.16);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #f3e8ff;
+      font-weight: 600;
+    }
+
+    .prob-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #140926;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .btn-open:hover {
+      background: #f3e8ff;
+    }
+
+    .empty-msg {
+      padding: 24px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/probleme/liceu/probleme-complete-python-cpp">← Înapoi la Probleme complete: Python &amp; C++</a>
+
+    <div class="list-header">
+      <h1>Lista de probleme · Divizibilitate</h1>
+      <span class="count-badge" id="filteredCount">1</span>
+    </div>
+
+    <div class="layout">
+      <aside class="filter-panel" aria-label="Filtrare probleme">
+        <h2>Filtrare</h2>
+
+        <div class="field">
+          <label for="filterSearch">Număr sau titlu problemă</label>
+          <input type="text" id="filterSearch" placeholder="ex: 387 sau impari" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="filterCategory">Categorie</label>
+          <select id="filterCategory">
+            <option value="all">Toate categoriile</option>
+            <option value="Algoritmi elementari" selected>Algoritmi elementari</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="filterSubcategory">Subcategorie</label>
+          <select id="filterSubcategory">
+            <option value="all">Toate subcategoriile</option>
+            <option value="Divizibilitate" selected>Divizibilitate</option>
+          </select>
+        </div>
+
+        <div class="filter-actions">
+          <button type="button" class="btn-filter" id="btnFilter">Filtrare</button>
+          <button type="button" class="btn-reset" id="btnReset">Reset</button>
+        </div>
+      </aside>
+
+      <main class="problems-col" id="problemsList"></main>
+    </div>
+  </div>
+
+  <script>
+    const PROBLEME_DIVIZIBILITATE = [
+      {
+        numar: '387',
+        titlu: 'Suma Divizorilor Impari',
+        enunt: 'Se citește un număr natural n. Să se determine suma divizorilor impari ai săi.',
+        categorie: 'Algoritmi elementari',
+        subcategorie: 'Divizibilitate',
+        etichete: ['Python + C++', 'Pseudocod', 'Flowgorithm', 'Fișă completă'],
+        url: '/probleme/pbinfo-387-suma-divizorilor-impari'
+      }
+    ];
+
+    const searchInput = document.getElementById('filterSearch');
+    const categorySelect = document.getElementById('filterCategory');
+    const subcategorySelect = document.getElementById('filterSubcategory');
+    const btnFilter = document.getElementById('btnFilter');
+    const btnReset = document.getElementById('btnReset');
+    const listEl = document.getElementById('problemsList');
+    const countEl = document.getElementById('filteredCount');
+
+    function renderProbleme() {
+      const q = (searchInput?.value || '').trim().toLowerCase();
+      const cat = categorySelect?.value || 'all';
+      const subcat = subcategorySelect?.value || 'all';
+
+      const filtrate = PROBLEME_DIVIZIBILITATE.filter((p) => {
+        const matchText =
+          !q ||
+          p.numar.toLowerCase().includes(q) ||
+          p.titlu.toLowerCase().includes(q);
+        const matchCat = cat === 'all' || p.categorie === cat;
+        const matchSubcat = subcat === 'all' || p.subcategorie === subcat;
+        return matchText && matchCat && matchSubcat;
+      });
+
+      if (countEl) {
+        countEl.textContent = String(filtrate.length);
+      }
+
+      if (!listEl) return;
+
+      if (filtrate.length === 0) {
+        listEl.innerHTML = '<div class="empty-msg">Nu s-a găsit nicio problemă pentru filtrele selectate.</div>';
+        return;
+      }
+
+      listEl.innerHTML = filtrate
+        .map(
+          (p) => `
+          <article class="prob-item">
+            <div class="prob-top">
+              <h2 class="prob-title">${p.titlu}</h2>
+              <span class="prob-num">#${p.numar}</span>
+            </div>
+            <div class="prob-body">
+              <p class="prob-statement">${p.enunt}</p>
+              <div class="prob-tags">
+                <span class="tag">${p.categorie} → ${p.subcategorie}</span>
+                ${p.etichete.map((t) => `<span class="tag">${t}</span>`).join('')}
+              </div>
+              <div class="prob-footer">
+                <a class="btn-open" href="${p.url}">Deschide fișa completă →</a>
+              </div>
+            </div>
+          </article>
+        `
+        )
+        .join('');
+    }
+
+    searchInput?.addEventListener('input', renderProbleme);
+    categorySelect?.addEventListener('change', renderProbleme);
+    subcategorySelect?.addEventListener('change', renderProbleme);
+    btnFilter?.addEventListener('click', renderProbleme);
+
+    btnReset?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (categorySelect) categorySelect.value = 'all';
+      if (subcategorySelect) subcategorySelect.value = 'all';
+      renderProbleme();
+    });
+
+    renderProbleme();
+  </script>
+</body>
+</html>

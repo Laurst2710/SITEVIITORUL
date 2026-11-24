@@ -1,10 +1,74 @@
-{
-    "versiune":  "v11",
-    "data_ora":  "2026-11-23 14:41:11",
-    "pagina":  "src/pages/index.astro",
-    "pagini_inventar":  "index.astro, pbinfo-1360-suma-gauss.astro, pbinfo-387-suma-divizorilor-impari.astro, test-sunet.astro",
-    "functionalitate":  "Backup local, backup Drive/ZIP, inventar DB si initializare/legare Git",
-    "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-144111",
-    "backup_gdrive":  "Arhiva ZIP creata pe Desktop: C:\\Users\\Laurentiu\\Desktop\\Backup-Viitorul-v11-20261123-144111.zip",
-    "preview_local":  "http://localhost:4321/"
-}
+[
+    {
+        "versiune":  "v11",
+        "data_ora":  "2026-11-23 14:41:11",
+        "pagina":  "src/pages/index.astro",
+        "pagini_inventar":  "index.astro, pbinfo-1360-suma-gauss.astro, pbinfo-387-suma-divizorilor-impari.astro, test-sunet.astro",
+        "functionalitate":  "Backup local, backup Drive/ZIP, inventar DB si initializare/legare Git",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-144111",
+        "backup_gdrive":  "Arhiva ZIP creata pe Desktop: C:\\Users\\Laurentiu\\Desktop\\Backup-Viitorul-v11-20261123-144111.zip",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v18",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 16:11:21",
+        "pagina":  "src/pages/index.astro",
+        "pagini_inventar":  "index.astro, pbinfo-1360-suma-gauss.astro, pbinfo-387-suma-divizorilor-impari.astro, test-sunet.astro",
+        "functionalitate":  "Standardizare antet By Gemini, backup local/Drive/ZIP si actualizare inventar DB",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-161121",
+        "backup_gdrive":  "Arhiva ZIP creata pe Desktop: C:\\Users\\Laurentiu\\Desktop\\Backup-Viitorul-v18-20261123-161121.zip",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v19",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 16:13:44",
+        "pagina":  "src/pages/index.astro",
+        "pagini_inventar":  "index.astro, pbinfo-1360-suma-gauss.astro, pbinfo-387-suma-divizorilor-impari.astro, test-sunet.astro",
+        "functionalitate":  "Diagnostic \u003cnav\u003e si \u003cstyle\u003e, backup local/Drive/ZIP si actualizare inventar DB",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-161344",
+        "backup_gdrive":  "Arhiva ZIP creata pe Desktop: C:\\Users\\Laurentiu\\Desktop\\Backup-Viitorul-v19-20261123-161344.zip",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v28",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 18:06:57",
+        "pagina":  "src/pages/index.astro",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-180657",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v30",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 18:12:08",
+        "pagina":  "src/pages/index.astro",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-181208",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v31",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 18:20:44",
+        "pagina":  "src/pages/resurse/cum-predam/model.astro",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\resurse\\cum-predam\\model.astro.bak-20261123-182044",
+        "preview_local":  "http://localhost:4321/resurse/cum-predam/model"
+    },
+    {
+        "versiune":  "v33",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 18:22:48",
+        "pagina":  "src/pages/index.astro",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-182248",
+        "preview_local":  "http://localhost:4321/"
+    },
+    {
+        "versiune":  "v34",
+        "antet":  "By Gemini",
+        "data_ora":  "2026-11-23 18:24:51",
+        "pagina":  "src/pages/index.astro",
+        "backup_local":  "C:\\Users\\Laurentiu\\Desktop\\proiecte-astro\\viitorul\\src\\pages\\index.astro.bak-20261123-182451",
+        "preview_local":  "http://localhost:4321/"
+    }
+]

@@ -1,0 +1,327 @@
+---
+// Pagină separată: Pbinfo #332 - Expresie2
+// Viitorul Digital v1.6.13
+---
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- START SEO: Meta-etichete pentru indexare, cautare si partajare -->
+  <title>Pbinfo #332 — Expresie2 | v1.6.13</title>
+  <meta name="description" content="Rezolvare completă pentru problema Pbinfo #332 Expresie2: analiză, C++ comentat, pseudocod, Flowgorithm și runner Python." />
+  <link rel="canonical" href="/probleme/pbinfo-332-expresie2" />
+  <!-- END SEO -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+  <style>
+    :root {
+      --bg-card: #ffffff;
+      --bg-soft: #efe9ff;
+      --border: #ddd2fe;
+      --text-main: #1e1b4b;
+      --accent: #6d28d9;
+      --accent-hover: #5b21b6;
+      --code-bg: #161329;
+      --code-text: #f3e8ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(160deg, #ede9fe 0%, #f8f7ff 45%, #ffffff 100%);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 2rem 1rem 4rem;
+    }
+    .ver-badge {
+      position: fixed; top: 12px; right: 14px; z-index: 99999;
+      background: #1e1b4b; color: #f3e8ff; border: 1px solid #8b5cf6;
+      border-radius: 999px; padding: 0.25rem 0.75rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
+      box-shadow: 0 6px 18px rgba(30, 27, 75, 0.22);
+    }
+    .container { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.75rem; }
+    .header-card, section.card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 1.75rem 2rem; box-shadow: 0 10px 26px rgba(109, 40, 217, 0.06);
+    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.75rem; }
+    .badge {
+      display: inline-flex !important; align-items: center !important;
+      padding: 0.42rem 0.85rem !important; border-radius: 12px !important;
+      background: #ede9fe !important; color: #4c1d95 !important; border: 1px solid #c4b5fd !important;
+      font-weight: 600 !important; font-size: 0.9rem !important; line-height: 1.2 !important;
+      text-decoration: none !important;
+    }
+    .badge-row .badge:first-child { background: #6d28d9 !important; color: #ffffff !important; border-color: #6d28d9 !important; }
+    h1 { margin: 0 0 0.75rem 0; font-size: 1.85rem; color: #2e1065; }
+    section.card h2 { margin-top: 0; font-size: 1.35rem; color: #3b0764; display: flex; align-items: center; gap: 0.5rem; }
+    .step-pill { background: #ede9fe; color: #6d28d9; font-size: 0.8rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 8px; text-transform: uppercase; }
+    .enunt-sectiuni { display: grid; gap: 0.85rem; }
+    .enunt-sec { background: var(--bg-soft); border-left: 4px solid var(--accent); border-radius: 12px; padding: 0.8rem 1.25rem; }
+    .enunt-sec h2 { margin: 0 0 0.3rem; font-size: 1.1rem; color: #3b0764; }
+    .enunt-sec p { margin: 0.3rem 0 0; }
+    .enunt-io { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin: 0.4rem 0; }
+    .enunt-io div { background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.9rem; }
+    .enunt-io strong { display: block; font-size: 0.85rem; margin-bottom: 0.15rem; }
+    .enunt-sec code, .enunt-io code { font-size: 1.15rem; font-weight: 800; color: #3b0764; }
+    pre.code-block {
+      background: var(--code-bg); color: var(--code-text); padding: 1.25rem; border-radius: 14px;
+      overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; line-height: 1.55; margin: 0.75rem 0;
+    }
+    .code-header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .btn { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 0.55rem 1.1rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-secondary { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
+    .btn-secondary:hover { background: #ddd6fe; }
+    .btn:disabled, .btn-secondary:disabled { background: #e5e7eb; color: #6b7280; border-color: #d1d5db; cursor: not-allowed; opacity: 0.75; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+    @media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+    .pseudocod-box {
+      background: #faf8ff; border: 1px solid #d8b4fe; border-radius: 14px; padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.7; color: #1e1b4b;
+    }
+    .kw { color: #6d28d9; font-weight: 700; }
+    .indent-1 { padding-left: 1.5rem; }
+    .indent-2 { padding-left: 3rem; }
+    .flow-box {
+      background: #faf8ff; border: 1px solid #d8b4fe; border-radius: 14px; padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 1.65; color: #2e1065; white-space: pre-wrap;
+    }
+    .python-challenge { background: #f5f3ff; border: 1px solid #c4b5fd; border-radius: 14px; padding: 1.1rem 1.3rem; margin-bottom: 1rem; }
+    textarea#pyEditor {
+      width: 100%; min-height: 200px; background: #161329; color: #f3e8ff;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.94rem; line-height: 1.55;
+      padding: 1rem; border-radius: 14px; border: 2px solid #7c3aed; resize: vertical; outline: none; display: block;
+    }
+    .runner-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin: 0.85rem 0; }
+    .stdin-group { display: flex; align-items: center; gap: 0.5rem; background: #f5f3ff; border: 1px solid #c4b5fd; padding: 0.4rem 0.75rem; border-radius: 10px; }
+    .stdin-group input { width: 140px; padding: 0.3rem 0.5rem; border: 1px solid #a78bfa; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 600; background: #ffffff; color: #1e1b4b; }
+    pre#pyOutput { background: #0f0d1d; color: #a7f3d0; padding: 1rem 1.2rem; border-radius: 12px; min-height: 76px; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; margin: 0; white-space: pre-wrap; }
+    .stdin-live-box { display: none; align-items: center; gap: 0.6rem; margin-top: 0.7rem; background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 12px; padding: 0.55rem 0.85rem; }
+    .stdin-live-box.active { display: flex; }
+    .stdin-live-box input { flex: 1; min-width: 140px; padding: 0.4rem 0.65rem; border: 1px solid #7c3aed; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; background: #ffffff; color: #1e1b4b; }
+  </style>
+</head>
+<body>
+  <div class="ver-badge" id="pageVersionBadge">v1.6.13</div>
+  <main class="container">
+    <header class="header-card">
+      <div class="badge-row">
+        <span class="badge">Referință - Pbinfo #332</span>
+        <span class="badge">C++ → Pseudocod → Flowgorithm → Python</span>
+        <span class="badge">Sume, produse, numărări</span>
+        <span class="badge">Algoritmi elementari</span>
+      </div>
+      <h1>Expresie2</h1>
+      <div class="enunt-sectiuni">
+        <div class="enunt-sec"><h2>Cerința</h2><p>Să se scrie un program care citește numărul natural <code>n</code> și determină suma <code>S = 1*2 + 2*3 + 3*4 + ... + n*(n+1)</code>.</p></div>
+        <div class="enunt-sec"><h2>Intrare</h2><p>Programul citește de la tastatură numărul natural <code>n</code>.</p></div>
+        <div class="enunt-sec"><h2>Ieșire</h2><p>Programul va afișa pe ecran mesajul <code>Rezultatul este S</code>.</p></div>
+        <div class="enunt-sec"><h2>Restricții</h2><p><code>1 &le; n &le; 1.000</code>.</p></div>
+        <div class="enunt-sec">
+          <h2>Exemplu</h2>
+          <div class="enunt-io">
+            <div><strong>Intrare</strong><code>3</code></div>
+            <div><strong>Ieșire</strong><code>Rezultatul este 20</code></div>
+          </div>
+          <p>1*2 + 2*3 + 3*4 = 2 + 6 + 12 = 20.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="code-header">
+        <h2><span class="step-pill">Pasul 1</span> Rezolvarea în C++</h2>
+        <button type="button" class="btn btn-secondary" id="copyCppBtn">Copiază codul C++</button>
+      </div>
+      <p>Însumăm produsele <code>i * (i + 1)</code> pentru <code>i</code> de la <code>1</code> la <code>n</code>.</p>
+      <pre class="code-block" id="cppCode">{`#include <iostream>
+using namespace std;
+
+int main() {
+    long long n, s = 0;
+    if (!(cin >> n)) return 0; // Citim n
+    for (long long i = 1; i <= n; i++) {
+        s += i * (i + 1); // Adaugam termenul curent
+    }
+    cout << "Rezultatul este " << s;
+    return 0;
+}`}</pre>
+    </section>
+
+    <section class="card">
+      <h2><span class="step-pill">Pasul 2</span> Pseudocod &amp; Schemă Logică Flowgorithm</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Pseudocod</h3>
+          <div class="pseudocod-box"><div><span class="kw">citește</span> n</div><div>s &larr; 0</div><div><span class="kw">pentru</span> i &larr; 1, n <span class="kw">execută</span></div><div class="indent-1">s &larr; s + i * (i + 1)</div><div><span class="kw">sfârșit pentru</span></div><div><span class="kw">scrie</span> "Rezultatul este ", s</div></div>
+        </div>
+        <div>
+          <h3>Schemă logică Flowgorithm</h3>
+          <div class="flow-box">[Start]
+  └── Input: n; s = 0
+        └── For i = 1 to n → s += i * (i + 1)
+              └── Output: "Rezultatul este " + s
+[Stop]</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="step-pill">Pasul 3</span> Rezolvarea în Python</h2>
+      <div class="python-challenge"><strong>Cerință:</strong> Să se scrie un program care citește numărul natural <code>n</code> și determină suma <code>S = 1*2 + 2*3 + 3*4 + ... + n*(n+1)</code>. Scrie rezolvarea în Python și ruleaz-o.</div>
+      <textarea id="pyEditor" placeholder="# Scrie aici codul tău Python..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="runner-controls">
+        <div class="stdin-group">
+          <label for="pyStdin"><strong>Intrare:</strong></label>
+          <input type="text" id="pyStdin" value="3" />
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;align-self:center;font-size:0.95rem;white-space:nowrap;">
+          <strong>Ieșire așteptată:</strong>
+          <code style="padding:2px 7px;border-radius:6px;background:rgba(124,58,237,0.12);font-weight:700;">Rezultatul este 20</code>
+        </div>
+        <button type="button" class="btn" id="runPyBtn">&#9654; Rulează Python</button>
+        <button type="button" class="btn btn-secondary" id="clearPyBtn">Golește editorul</button>
+        <button type="button" class="btn btn-secondary" id="copyPyBtn">Copiază codul</button>
+        <button type="button" class="btn btn-secondary" id="recSolutionBtn" disabled>Rezolvare recomandată (30s)</button>
+      </div>
+      <pre id="pyOutput"></pre>
+      <div class="stdin-live-box" id="stdinLiveBox">
+        <label for="stdinLiveInput"><strong id="stdinLiveLabel">Introdu de la tastatură:</strong></label>
+        <input type="text" id="stdinLiveInput" autocomplete="off" />
+        <button type="button" class="btn" id="stdinLiveSubmit">Trimite</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    const pyEditor = document.getElementById('pyEditor');
+    const pyStdin = document.getElementById('pyStdin');
+    const pyOutput = document.getElementById('pyOutput');
+    const recBtn = document.getElementById('recSolutionBtn');
+    const copyPyBtn = document.getElementById('copyPyBtn');
+    const stdinLiveBox = document.getElementById('stdinLiveBox');
+    const stdinLiveLabel = document.getElementById('stdinLiveLabel');
+    const stdinLiveInput = document.getElementById('stdinLiveInput');
+    const stdinLiveSubmit = document.getElementById('stdinLiveSubmit');
+
+    const recommendedSolution = ["n = int(input())", "s = sum(i * (i + 1) for i in range(1, n + 1))", "print(f'Rezultatul este {s}')"].join('\n');
+
+    if (pyEditor) pyEditor.value = '';
+    let remainingSeconds = 30;
+    if (recBtn) {
+      recBtn.disabled = true;
+      recBtn.textContent = `Rezolvare recomandată (${remainingSeconds}s)`;
+      const timerId = setInterval(() => {
+        remainingSeconds -= 1;
+        if (remainingSeconds > 0) {
+          recBtn.textContent = `Rezolvare recomandată (${remainingSeconds}s)`;
+        } else {
+          clearInterval(timerId);
+          recBtn.disabled = false;
+          recBtn.textContent = 'Rezolvare recomandată';
+        }
+      }, 1000);
+      recBtn.addEventListener('click', () => {
+        if (recBtn.disabled || !pyEditor) return;
+        pyEditor.value = recommendedSolution;
+        pyEditor.focus();
+      });
+    }
+    document.getElementById('copyCppBtn')?.addEventListener('click', function () {
+      const code = document.getElementById('cppCode')?.innerText || '';
+      navigator.clipboard?.writeText(code).then(() => {
+        this.textContent = 'Copiat!';
+        setTimeout(() => { this.textContent = 'Copiază codul C++'; }, 1500);
+      });
+    });
+    copyPyBtn?.addEventListener('click', function () {
+      const code = pyEditor ? pyEditor.value : '';
+      if (!code) return;
+      navigator.clipboard?.writeText(code).then(() => {
+        this.textContent = 'Copiat!';
+        setTimeout(() => { this.textContent = 'Copiază codul'; }, 1500);
+      });
+    });
+    document.getElementById('clearPyBtn')?.addEventListener('click', () => {
+      if (pyEditor) { pyEditor.value = ''; pyEditor.focus(); }
+      if (pyOutput) pyOutput.textContent = '';
+    });
+    function requestKeyboardInput(promptText) {
+      return new Promise((resolve) => {
+        if (!stdinLiveBox || !stdinLiveInput || !stdinLiveSubmit) {
+          resolve(pyStdin ? pyStdin.value : '');
+          return;
+        }
+        if (stdinLiveLabel) {
+          stdinLiveLabel.textContent = promptText && promptText.trim() ? promptText.trim() + ' ' : 'Introdu valoarea de la tastatură:';
+        }
+        stdinLiveInput.value = '';
+        const asteptareStart = Date.now();
+        stdinLiveBox.classList.add('active');
+        stdinLiveInput.focus();
+        const cleanup = () => {
+          stdinLiveBox.classList.remove('active');
+          stdinLiveSubmit.removeEventListener('click', onSubmit);
+          stdinLiveInput.removeEventListener('keydown', onKeyDown);
+        };
+        const onSubmit = () => {
+          const val = stdinLiveInput.value;
+          if (typeof Sk !== 'undefined' && Sk.execStart) {
+            Sk.execStart = Number(Sk.execStart) + (Date.now() - asteptareStart);
+          }
+          if (pyStdin) pyStdin.value = val;
+          cleanup();
+          resolve(val);
+        };
+        const onKeyDown = (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); onSubmit(); }
+        };
+        stdinLiveSubmit.addEventListener('click', onSubmit);
+        stdinLiveInput.addEventListener('keydown', onKeyDown);
+      });
+    }
+    document.getElementById('runPyBtn')?.addEventListener('click', () => {
+      if (!pyEditor || !pyOutput) return;
+      const code = pyEditor.value;
+      pyOutput.style.color = '#a7f3d0';
+      pyOutput.textContent = '';
+      if (!code.trim()) {
+        pyOutput.style.color = '#fca5a5';
+        pyOutput.textContent = 'Scrie codul Python în fereastră înainte de a rula.';
+        return;
+      }
+      if (typeof Sk === 'undefined') {
+        pyOutput.style.color = '#fca5a5';
+        pyOutput.textContent = 'Eroare: motorul Python nu s-a încărcat.';
+        return;
+      }
+      Sk.configure({
+        output: (text) => { pyOutput.textContent += text; },
+        read: (x) => {
+          if (Sk.builtinFiles === undefined || Sk.builtinFiles.files[x] === undefined) {
+            throw "File not found: '" + x + "'";
+          }
+          return Sk.builtinFiles.files[x];
+        },
+        inputfun: (promptText) => requestKeyboardInput(promptText),
+        inputfunTakesPrompt: true,
+        execLimit: 5000
+      });
+      Sk.execStart = Date.now();
+      Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, code, true)).then(
+        () => {},
+        (err) => {
+          if (stdinLiveBox) stdinLiveBox.classList.remove('active');
+          pyOutput.style.color = '#fca5a5';
+          pyOutput.textContent = err.toString();
+        }
+      );
+    });
+  </script>
+</body>
+</html>
